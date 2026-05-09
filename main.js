@@ -208,11 +208,28 @@ function initLocale() {
   select?.addEventListener('change', e => applyLocale(e.target.value));
 }
 
+// ─── Theme ────────────────────────────────────────────────────────────────────
+
+function initTheme() {
+  const saved = localStorage.getItem('theme') ?? 'crt';
+  document.documentElement.dataset.theme = saved;
+
+  const select = document.getElementById('theme-select');
+  if (select) select.value = saved;
+
+  select?.addEventListener('change', e => {
+    const theme = e.target.value;
+    document.documentElement.dataset.theme = theme;
+    localStorage.setItem('theme', theme);
+  });
+}
+
 // ─── Boot ─────────────────────────────────────────────────────────────────────
 
 document.addEventListener('DOMContentLoaded', () => {
   buildNav();
   initDialogs();
   initLocale();
+  initTheme();
   loadGitHubRepos();
 });

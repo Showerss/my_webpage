@@ -1,13 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+
+
+
+<html lang="en" data-theme="crt">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Phillip — Software Engineer. Systems thinker, curious builder, aspiring PhD candidate in robotics.">
+  <meta name="description" content="Phillip — Software Engineer. Systems thinker, curious builder, aspiring PhD candidate.">
   <title>Phillip — Software Engineer</title>
   <link rel="stylesheet" href="style.css">
   <script src="main.js" type="module"></script>
 </head>
+
+
+
 <body>
   <main>
     <nav class="floating-nav" aria-label="Main navigation">
@@ -22,6 +28,13 @@
           <option value="de">DE</option>
           <option value="es">ES</option>
           <option value="it">IT</option>
+        </select>
+      </div>
+      <div class="nav-theme">
+        <label for="theme-select" class="visually-hidden">Select theme</label>
+        <select id="theme-select">
+          <option value="crt" selected>CRT</option>
+          <option value="clean">Clean</option>
         </select>
       </div>
     </nav>

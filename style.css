@@ -30,6 +30,64 @@
   --dialog-max-width: 640px;
   --dialog-max-height: 80vh;
   --nav-bottom:       2rem;
+
+  /* CRT overlay */
+  --crt-scanline-opacity: 0.04;
+  --crt-vignette-strength: 0.18;
+  --crt-flicker-duration: 8s;
+}
+
+/* ============================================================
+   CRT OVERLAY
+   Purely cosmetic glass-in-front-of-screen effect.
+   Tweak --crt-scanline-opacity / --crt-vignette-strength in
+   :root to dial intensity up or down without touching layout.
+   ============================================================ */
+
+/* Vignette — edges darken toward the corners */
+html[data-theme="crt"] body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    transparent 55%,
+    rgba(0, 0, 0, var(--crt-vignette-strength)) 100%
+  );
+}
+
+/* Scanlines — repeating faint horizontal stripes */
+html[data-theme="crt"] body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, var(--crt-scanline-opacity)) 2px,
+    rgba(0, 0, 0, var(--crt-scanline-opacity)) 4px
+  );
+}
+
+/* Slow flicker — mimics aging CRT brightness instability */
+@keyframes crt-flicker {
+  0%         { filter: brightness(1);    }
+  30%        { filter: brightness(0.98); }
+  50%        { filter: brightness(1);    }
+  75%        { filter: brightness(0.97); }
+  80%        { filter: brightness(1);    }
+  100%       { filter: brightness(0.99); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html[data-theme="crt"] body {
+    animation: crt-flicker var(--crt-flicker-duration) ease-in-out infinite;
+  }
 }
 
 /* ============================================================
@@ -177,6 +235,36 @@ body {
 }
 
 .nav-locale select:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ============================================================
+   THEME SELECTOR
+   ============================================================ */
+.nav-theme {
+  border-left: 1px solid var(--color-border);
+  padding-left: var(--sp-sm);
+  margin-left: var(--sp-sm);
+}
+
+.nav-theme select {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--color-text);
+  cursor: pointer;
+  padding: var(--sp-xs) var(--sp-sm);
+  transition: background 0.12s, color 0.12s;
+}
+
+.nav-theme select:hover {
+  background: var(--color-text);
+  color: var(--color-window-bg);
+}
+
+.nav-theme select:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
