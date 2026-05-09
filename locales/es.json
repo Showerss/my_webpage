@@ -1,0 +1,45 @@
+{
+  "nav": {
+    "userManual": "Manual de Usuario",
+    "projects": "Proyectos y Habilidades",
+    "langSelect": "Seleccionar idioma"
+  },
+  "userManual": {
+    "title": "Manual de Usuario",
+    "name": "Phillip",
+    "tagline": "Ingeniero de Software · Él",
+    "overviewHeading": "Descripción del Producto",
+    "specModel": "Modelo",
+    "specModelVal": "Phillip (Él)",
+    "specVersion": "Versión",
+    "specFirmware": "Firmware",
+    "specFirmwareVal": "Ingeniero de Software",
+    "specStatus": "Estado",
+    "specStatusVal": "Doctorado en curso · Robótica / Ingeniería de Software",
+    "prosHeading": "Características (Ventajas)",
+    "pro1": "Curiosidad profunda — analiza sistemas y valora la planificación antes de escribir código",
+    "pro2": "Entusiasmo genuino por el oficio — programa porque le apasiona",
+    "pro3": "Resiliente — cumple sus compromisos hasta el final",
+    "pro4": "Amplio rango técnico: sistemas embebidos, gestión de memoria, C/C++/C#, Java, Python, Rust, redes",
+    "pro5": "Aprendizaje rápido con nuevas herramientas y bibliotecas",
+    "consHeading": "Limitaciones Conocidas (Desventajas)",
+    "con1": "No es aún experto en un solo lenguaje — gran amplitud, profundizando",
+    "con2": "Se entusiasma y puede explicar descubrimientos interesantes en exceso",
+    "con3": "~85% profesional — mantiene el trabajo divertido, trata el código como expresión personal",
+    "useCasesHeading": "Casos de Uso Previstos",
+    "use1": "Programación de sistemas e ingeniería de bajo nivel",
+    "use2": "Investigación en robótica, ML o ingeniería de software",
+    "use3": "Equipos que valoran la curiosidad y el artesanado",
+    "use4": "Programas de doctorado en robótica o ingeniería de software",
+    "missionHeading": "Declaración de Misión",
+    "missionText": "Desarrollar tecnologías con impacto positivo real: limpieza de océanos, eficiencia energética, robótica asistida, vida sostenible y tecnología médica."
+  },
+  "projects": {
+    "title": "Proyectos y Habilidades",
+    "skillsHeading": "Habilidades Técnicas",
+    "reposHeading": "Proyectos en GitHub",
+    "loading": "Cargando repositorios…",
+    "errorMsg": "No se pudieron cargar los repositorios.",
+    "errorLink": "Ver en GitHub →"
+  }
+}

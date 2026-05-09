@@ -1,0 +1,530 @@
+/* ============================================================
+   DESIGN TOKENS
+   All raw values live here. Components reference vars only.
+   To add a theme: override these vars in a [data-theme="x"]
+   selector — zero layout CSS changes needed.
+   ============================================================ */
+:root {
+  /* Palette */
+  --color-primary:    #BABCFA; /* periwinkle — accents, shadows */
+  --color-bg:         #EAEAEA;
+  --color-text:       #000000;
+  --color-border:     #000000;
+  --color-window-bg:  #FFFFFF;
+  --color-window-bar: #CCCCCC;
+
+  /* Typography
+     TODO: replace with self-hosted font once assets/fonts/ is populated.
+     Add @font-face above :root and update --font-mono. */
+  --font-mono: "Courier New", Courier, monospace;
+
+  /* Spacing */
+  --sp-xs: 0.25rem;
+  --sp-sm: 0.5rem;
+  --sp-md: 1rem;
+  --sp-lg: 1.5rem;
+  --sp-xl: 2rem;
+
+  /* Component dimensions */
+  --close-btn-size:   1.5rem;
+  --dialog-max-width: 640px;
+  --dialog-max-height: 80vh;
+  --nav-bottom:       2rem;
+}
+
+/* ============================================================
+   RESET + BASE
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-mono);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  /* Dithered retro background */
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      var(--color-bg) 25%,
+      transparent 25%,
+      transparent 75%,
+      var(--color-bg) 75%
+    ),
+    repeating-linear-gradient(
+      45deg,
+      var(--color-bg) 25%,
+      var(--color-primary) 25%,
+      var(--color-primary) 75%,
+      var(--color-bg) 75%
+    );
+  background-position: 0 0, 2px 2px;
+  background-size: 4px 4px;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ============================================================
+   ACCESSIBILITY UTILITIES
+   ============================================================ */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ============================================================
+   NO-SCRIPT FALLBACK
+   ============================================================ */
+.noscript-notice {
+  position: fixed;
+  bottom: 6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-window-bg);
+  border: 2px solid var(--color-border);
+  padding: var(--sp-sm) var(--sp-md);
+  font-family: var(--font-mono);
+  white-space: nowrap;
+  z-index: 50;
+}
+
+.noscript-notice a {
+  color: var(--color-text);
+  font-weight: bold;
+}
+
+/* ============================================================
+   FLOATING NAV
+   ============================================================ */
+.floating-nav {
+  position: fixed;
+  bottom: var(--nav-bottom);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: var(--color-window-bg);
+  border: 2px solid var(--color-border);
+  box-shadow: 4px 4px 0 var(--color-primary);
+  padding: var(--sp-sm) var(--sp-md);
+}
+
+.floating-nav > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: var(--sp-sm);
+}
+
+.nav-btn {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  padding: var(--sp-xs) var(--sp-md);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.12s, color 0.12s;
+}
+
+.nav-btn:hover,
+.nav-btn[aria-expanded="true"] {
+  background: var(--color-text);
+  color: var(--color-window-bg);
+}
+
+.nav-btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ============================================================
+   LOCALE SELECTOR
+   ============================================================ */
+.nav-locale {
+  border-left: 1px solid var(--color-border);
+  padding-left: var(--sp-sm);
+  margin-left: var(--sp-sm);
+}
+
+.nav-locale select {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--color-text);
+  cursor: pointer;
+  padding: var(--sp-xs) var(--sp-sm);
+  transition: background 0.12s, color 0.12s;
+}
+
+.nav-locale select:hover {
+  background: var(--color-text);
+  color: var(--color-window-bg);
+}
+
+.nav-locale select:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ============================================================
+   DIALOG / MAC OS WINDOW
+   ============================================================ */
+dialog {
+  padding: 0;
+  border: none;
+  /* Remove browser defaults that fight our sizing */
+  max-width: none;
+  max-height: none;
+  background: transparent;
+}
+
+dialog:not([open]) {
+  display: none;
+}
+
+.mac-os-window {
+  display: flex;
+  flex-direction: column;
+  width: min(var(--dialog-max-width), 90vw);
+  max-height: var(--dialog-max-height);
+  border: 2px solid var(--color-border);
+  background: var(--color-window-bg);
+  box-shadow: 6px 6px 0 var(--color-primary);
+  margin: auto; /* centering within the dialog's default position */
+}
+
+.mac-os-window::backdrop {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+/* ============================================================
+   WINDOW TITLEBAR
+   ============================================================ */
+.window-titlebar {
+  display: grid;
+  grid-template-columns: var(--close-btn-size) 1fr var(--close-btn-size);
+  align-items: center;
+  flex-shrink: 0;
+  background: var(--color-window-bar);
+  /* Horizontal stripe texture */
+  background-image: repeating-linear-gradient(
+    to bottom,
+    var(--color-window-bar) 0px,
+    var(--color-window-bar) 1px,
+    #dddddd 1px,
+    #dddddd 2px
+  );
+  border-bottom: 2px solid var(--color-border);
+  padding: var(--sp-xs) var(--sp-sm);
+}
+
+.window-titlebar h2 {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: bold;
+  text-align: center;
+  justify-self: center;
+  max-width: 100%;
+  background: var(--color-window-bg);
+  padding: 0.1rem var(--sp-sm);
+  border: 1px solid var(--color-border);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.close-btn {
+  width: var(--close-btn-size);
+  height: var(--close-btn-size);
+  padding: 0;
+  background: var(--color-window-bg);
+  border: 2px solid var(--color-border);
+  box-shadow: 1px 1px 0 var(--color-border);
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+  transition: background 0.12s;
+}
+
+/* X icon */
+.close-btn::before,
+.close-btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 2px;
+  background: var(--color-text);
+  transition: background 0.12s;
+}
+
+.close-btn::before { transform: translate(-50%, -50%) rotate(45deg); }
+.close-btn::after  { transform: translate(-50%, -50%) rotate(-45deg); }
+
+.close-btn:hover {
+  background: var(--color-text);
+}
+
+.close-btn:hover::before,
+.close-btn:hover::after {
+  background: var(--color-window-bg);
+}
+
+.close-btn:active {
+  box-shadow: none;
+  transform: translate(1px, 1px);
+}
+
+.close-btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ============================================================
+   WINDOW CONTENT
+   ============================================================ */
+.window-content {
+  flex: 1;
+  padding: var(--sp-lg);
+  overflow-y: auto;
+}
+
+.window-content > article + article {
+  margin-top: var(--sp-lg);
+  padding-top: var(--sp-lg);
+  border-top: 1px dashed var(--color-border);
+}
+
+.window-content h3 {
+  margin: 0 0 var(--sp-sm);
+  font-size: 0.72rem;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: var(--sp-xs);
+}
+
+.window-content p {
+  margin: 0;
+  line-height: 1.6;
+  font-size: 0.9rem;
+}
+
+.window-content a {
+  color: var(--color-text);
+  font-weight: bold;
+  text-decoration-thickness: 2px;
+}
+
+.window-content a:hover {
+  background: var(--color-text);
+  color: var(--color-window-bg);
+  text-decoration: none;
+}
+
+/* ============================================================
+   PROFILE FIGURE
+   ============================================================ */
+.profile-figure {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-md);
+  margin-bottom: var(--sp-lg);
+  padding-bottom: var(--sp-lg);
+  border-bottom: 1px dashed var(--color-border);
+}
+
+.profile-photo {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border: 2px solid var(--color-border);
+  box-shadow: 3px 3px 0 var(--color-primary);
+  flex-shrink: 0;
+  background: var(--color-bg); /* visible if image hasn't loaded */
+}
+
+.profile-figure figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-xs);
+  padding-top: var(--sp-xs);
+}
+
+.profile-figure figcaption strong {
+  font-size: 1.05rem;
+}
+
+.profile-figure figcaption span {
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+/* ============================================================
+   SPEC LIST (definition list key/value grid)
+   ============================================================ */
+.spec-list {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: var(--sp-xs) var(--sp-md);
+  margin: 0;
+}
+
+.spec-list dt {
+  font-size: 0.72rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.55;
+  align-self: center;
+}
+
+.spec-list dd {
+  margin: 0;
+  font-size: 0.9rem;
+  align-self: center;
+}
+
+/* ============================================================
+   FEATURE LISTS (pros / cons / neutral)
+   ============================================================ */
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-xs);
+}
+
+.feature-list li {
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.feature-list li::before {
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+.feature-list--pro li::before     { content: '✓'; }
+.feature-list--con li::before     { content: '⚠'; }
+.feature-list--neutral li::before { content: '–'; opacity: 0.45; }
+
+/* ============================================================
+   SKILLS TAGS
+   ============================================================ */
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-sm);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.skill-tag {
+  display: inline-block;
+  background: var(--color-text);
+  color: var(--color-window-bg);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  padding: var(--sp-xs) var(--sp-sm);
+  border: 1px solid var(--color-border);
+  letter-spacing: 0.02em;
+}
+
+/* ============================================================
+   GITHUB REPO CARDS
+   ============================================================ */
+.github-repos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--sp-md);
+}
+
+.repo-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-xs);
+  border: 1px solid var(--color-border);
+  padding: var(--sp-sm) var(--sp-md);
+  background: var(--color-bg);
+}
+
+.repo-card h4 {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.repo-card h4 a {
+  color: var(--color-text);
+  font-weight: bold;
+  text-decoration-thickness: 1px;
+}
+
+.repo-card h4 a:hover {
+  background: var(--color-text);
+  color: var(--color-window-bg);
+  text-decoration: none;
+}
+
+.repo-card p {
+  margin: 0;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  opacity: 0.8;
+  flex: 1;
+}
+
+.repo-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-sm);
+  align-items: center;
+  font-size: 0.75rem;
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--sp-xs);
+  margin-top: auto;
+}
+
+.repo-lang   { font-weight: bold; }
+.repo-stars  { opacity: 0.7; }
+.repo-meta time { margin-left: auto; opacity: 0.55; }
+
+/* ============================================================
+   LOADING / ERROR STATES
+   ============================================================ */
+.loading-state {
+  grid-column: 1 / -1;
+  font-size: 0.9rem;
+  font-style: italic;
+  opacity: 0.6;
+}
+
+.error-state {
+  grid-column: 1 / -1;
+  font-size: 0.9rem;
+  border-left: 3px solid var(--color-border);
+  padding-left: var(--sp-sm);
+}

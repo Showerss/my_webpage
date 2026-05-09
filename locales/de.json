@@ -1,0 +1,45 @@
+{
+  "nav": {
+    "userManual": "Benutzerhandbuch",
+    "projects": "Projekte & Fähigkeiten",
+    "langSelect": "Sprache auswählen"
+  },
+  "userManual": {
+    "title": "Benutzerhandbuch",
+    "name": "Phillip",
+    "tagline": "Softwareingenieur · Er/Ihm",
+    "overviewHeading": "Produktübersicht",
+    "specModel": "Modell",
+    "specModelVal": "Phillip (Er/Ihm)",
+    "specVersion": "Version",
+    "specFirmware": "Firmware",
+    "specFirmwareVal": "Softwareingenieur",
+    "specStatus": "Status",
+    "specStatusVal": "Promotionsstudent · Robotik / Software-Engineering",
+    "prosHeading": "Funktionen (Vorteile)",
+    "pro1": "Tiefe Neugier — analysiert Systeme und schätzt Planung vor dem Schreiben von Code",
+    "pro2": "Echte Begeisterung für das Handwerk — programmiert, weil er es liebt",
+    "pro3": "Beharrlich — bringt Verpflichtungen zu Ende",
+    "pro4": "Breites technisches Spektrum: Eingebettete Systeme, Speicherverwaltung, C/C++/C#, Java, Python, Rust, Netzwerke",
+    "pro5": "Schneller Lerner bei neuen Werkzeugen und Bibliotheken",
+    "consHeading": "Bekannte Einschränkungen (Nachteile)",
+    "con1": "Noch kein Experte in einer einzigen Sprache — breites Wissen, Tiefe in Entwicklung",
+    "con2": "Begeistert sich und erklärt interessante Erkenntnisse manchmal zu ausführlich",
+    "con3": "~85% professionell — hält die Arbeit angenehm, behandelt Code als persönlichen Ausdruck",
+    "useCasesHeading": "Vorgesehene Anwendungsfälle",
+    "use1": "Systemprogrammierung und Low-Level-Engineering",
+    "use2": "Forschung in Robotik, ML oder Software-Engineering",
+    "use3": "Teams, die Neugier und Handwerkskunst schätzen",
+    "use4": "Promotionsprogramme in Robotik oder Software-Engineering",
+    "missionHeading": "Leitbild",
+    "missionText": "Technologien mit positivem Einfluss entwickeln: Meeresreinigung, Energieeffizienz, Assistenzrobotik, nachhaltiges Leben und medizinische Technologie."
+  },
+  "projects": {
+    "title": "Projekte & Fähigkeiten",
+    "skillsHeading": "Technische Fähigkeiten",
+    "reposHeading": "GitHub-Projekte",
+    "loading": "Repositories werden geladen…",
+    "errorMsg": "Repositories konnten nicht geladen werden.",
+    "errorLink": "Auf GitHub ansehen →"
+  }
+}

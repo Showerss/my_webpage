@@ -1,0 +1,45 @@
+{
+  "nav": {
+    "userManual": "User Manual",
+    "projects": "Projects & Skills",
+    "langSelect": "Select language"
+  },
+  "userManual": {
+    "title": "User Manual",
+    "name": "Phillip",
+    "tagline": "Software Engineer · He/Him",
+    "overviewHeading": "Product Overview",
+    "specModel": "Model",
+    "specModelVal": "Phillip (He/Him)",
+    "specVersion": "Version",
+    "specFirmware": "Firmware",
+    "specFirmwareVal": "Software Engineer",
+    "specStatus": "Status",
+    "specStatusVal": "Pursuing PhD · Robotics / Software Eng.",
+    "prosHeading": "Features (Pros of Hiring)",
+    "pro1": "Deep curiosity — digs into systems and values planning before writing code",
+    "pro2": "Genuine enthusiasm for the craft — codes because he loves it",
+    "pro3": "Resilient — sees commitments through to completion",
+    "pro4": "Broad technical range: embedded systems, memory management, C/C++/C#, Java, Python, Rust, networking",
+    "pro5": "Fast learner across new tools and libraries",
+    "consHeading": "Known Limitations (Cons)",
+    "con1": "Not yet master-level in any single language — strong breadth, building depth",
+    "con2": "Gets excited and may over-explain interesting findings",
+    "con3": "Leans ~85% professional — keeps work fun, treats code as personal expression",
+    "useCasesHeading": "Intended Use Cases",
+    "use1": "Systems programming and low-level engineering roles",
+    "use2": "Research in robotics, ML, or software engineering",
+    "use3": "Teams that value curiosity and craftsmanship",
+    "use4": "PhD programs in robotics or software engineering",
+    "missionHeading": "Mission Statement",
+    "missionText": "Building technology with real-world positive impact: ocean cleanup, energy efficiency, assistive robotics, sustainable living, and medical tech."
+  },
+  "projects": {
+    "title": "Projects & Skills",
+    "skillsHeading": "Technical Skills",
+    "reposHeading": "GitHub Projects",
+    "loading": "Loading repositories…",
+    "errorMsg": "Could not load repositories.",
+    "errorLink": "View on GitHub →"
+  }
+}

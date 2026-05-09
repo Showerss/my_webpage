@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Phillip — Software Engineer. Systems thinker, curious builder, aspiring PhD candidate in robotics.">
+  <title>Phillip — Software Engineer</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="main.js" type="module"></script>
+</head>
+<body>
+  <main>
+    <nav class="floating-nav" aria-label="Main navigation">
+      <ul id="nav-list" role="list">
+        <!-- Populated by main.js from SECTIONS config -->
+      </ul>
+      <div class="nav-locale">
+        <label for="locale-select" class="visually-hidden" data-i18n="nav.langSelect">Select language</label>
+        <select id="locale-select">
+          <option value="en" selected>EN</option>
+          <option value="fr">FR</option>
+          <option value="de">DE</option>
+          <option value="es">ES</option>
+          <option value="it">IT</option>
+        </select>
+      </div>
+    </nav>
+
+    <noscript>
+      <p class="noscript-notice">
+        This portfolio requires JavaScript for navigation.
+        Find Phillip's work at <a href="https://github.com/Showerss">github.com/Showerss</a>.
+      </p>
+    </noscript>
+
+    <!-- User Manual Dialog -->
+    <dialog id="user-manual-dialog" class="mac-os-window" aria-labelledby="user-manual-title">
+      <header class="window-titlebar">
+        <button class="close-btn" aria-label="Close User Manual" data-close-dialog></button>
+        <h2 id="user-manual-title" data-i18n="userManual.title">User Manual</h2>
+        <span class="titlebar-spacer" aria-hidden="true"></span>
+      </header>
+      <section class="window-content">
+
+        <figure class="profile-figure">
+          <!-- Drop your photo at assets/img/profile.jpg -->
+          <img
+            src="assets/img/profile.jpg"
+            alt="Phillip"
+            class="profile-photo"
+            width="80"
+            height="80"
+          >
+          <figcaption>
+            <strong data-i18n="userManual.name">Phillip</strong>
+            <span data-i18n="userManual.tagline">Software Engineer · He/Him</span>
+          </figcaption>
+        </figure>
+
+        <article>
+          <h3 data-i18n="userManual.overviewHeading">Product Overview</h3>
+          <dl class="spec-list">
+            <dt data-i18n="userManual.specModel">Model</dt>
+            <dd data-i18n="userManual.specModelVal">Phillip (He/Him)</dd>
+
+            <dt data-i18n="userManual.specVersion">Version</dt>
+            <dd>1.0.0</dd>
+
+            <dt data-i18n="userManual.specFirmware">Firmware</dt>
+            <dd data-i18n="userManual.specFirmwareVal">Software Engineer</dd>
+
+            <dt data-i18n="userManual.specStatus">Status</dt>
+            <dd data-i18n="userManual.specStatusVal">Pursuing PhD · Robotics / Software Eng.</dd>
+          </dl>
+        </article>
+
+        <article>
+          <h3 data-i18n="userManual.prosHeading">Features (Pros of Hiring)</h3>
+          <ul class="feature-list feature-list--pro">
+            <li data-i18n="userManual.pro1">Deep curiosity — digs into systems and values planning before writing code</li>
+            <li data-i18n="userManual.pro2">Genuine enthusiasm for the craft — codes because he loves it</li>
+            <li data-i18n="userManual.pro3">Resilient — sees commitments through to completion</li>
+            <li data-i18n="userManual.pro4">Broad technical range: embedded systems, memory management, C/C++/C#, Java, Python, Rust, networking</li>
+            <li data-i18n="userManual.pro5">Fast learner across new tools and libraries</li>
+          </ul>
+        </article>
+
+        <article>
+          <h3 data-i18n="userManual.consHeading">Known Limitations (Cons)</h3>
+          <ul class="feature-list feature-list--con">
+            <li data-i18n="userManual.con1">Not yet master-level in any single language — strong breadth, building depth</li>
+            <li data-i18n="userManual.con2">Gets excited and may over-explain interesting findings</li>
+            <li data-i18n="userManual.con3">Leans ~85% professional — keeps work fun, treats code as personal expression</li>
+          </ul>
+        </article>
+
+        <article>
+          <h3 data-i18n="userManual.useCasesHeading">Intended Use Cases</h3>
+          <ul class="feature-list feature-list--neutral">
+            <li data-i18n="userManual.use1">Systems programming and low-level engineering roles</li>
+            <li data-i18n="userManual.use2">Research in robotics, ML, or software engineering</li>
+            <li data-i18n="userManual.use3">Teams that value curiosity and craftsmanship</li>
+            <li data-i18n="userManual.use4">PhD programs in robotics or software engineering</li>
+          </ul>
+        </article>
+
+        <article>
+          <h3 data-i18n="userManual.missionHeading">Mission Statement</h3>
+          <p data-i18n="userManual.missionText">Building technology with real-world positive impact: ocean cleanup, energy efficiency, assistive robotics, sustainable living, and medical tech.</p>
+        </article>
+
+      </section>
+    </dialog>
+
+    <!-- Projects & Skills Dialog -->
+    <dialog id="projects-dialog" class="mac-os-window" aria-labelledby="projects-title">
+      <header class="window-titlebar">
+        <button class="close-btn" aria-label="Close Projects and Skills" data-close-dialog></button>
+        <h2 id="projects-title" data-i18n="projects.title">Projects &amp; Skills</h2>
+        <span class="titlebar-spacer" aria-hidden="true"></span>
+      </header>
+      <section class="window-content">
+
+        <article>
+          <h3 data-i18n="projects.skillsHeading">Technical Skills</h3>
+          <ul class="skills-list" role="list" aria-label="Technical skills">
+            <li><span class="skill-tag">HTML5</span></li>
+            <li><span class="skill-tag">CSS3</span></li>
+            <li><span class="skill-tag">Vanilla JS</span></li>
+            <li><span class="skill-tag">Web Components</span></li>
+            <li><span class="skill-tag">DOM APIs</span></li>
+            <li><span class="skill-tag">C</span></li>
+            <li><span class="skill-tag">C++</span></li>
+            <li><span class="skill-tag">C#</span></li>
+            <li><span class="skill-tag">Java</span></li>
+            <li><span class="skill-tag">Python</span></li>
+            <li><span class="skill-tag">Rust</span></li>
+            <li><span class="skill-tag">Embedded Systems</span></li>
+            <li><span class="skill-tag">Memory Management</span></li>
+            <li><span class="skill-tag">Networking</span></li>
+            <li><span class="skill-tag">Accessibility (a11y)</span></li>
+          </ul>
+        </article>
+
+        <article>
+          <h3 data-i18n="projects.reposHeading">GitHub Projects</h3>
+          <div
+            id="github-repos"
+            class="github-repos"
+            aria-live="polite"
+            aria-busy="true"
+          >
+            <p class="loading-state" data-i18n="projects.loading">Loading repositories…</p>
+          </div>
+        </article>
+
+      </section>
+    </dialog>
+  </main>
+</body>
+</html>

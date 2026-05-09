@@ -1,0 +1,45 @@
+{
+  "nav": {
+    "userManual": "Manuel Utilisateur",
+    "projects": "Projets & Compétences",
+    "langSelect": "Sélectionner la langue"
+  },
+  "userManual": {
+    "title": "Manuel Utilisateur",
+    "name": "Phillip",
+    "tagline": "Ingénieur Logiciel · Il/Lui",
+    "overviewHeading": "Aperçu du Produit",
+    "specModel": "Modèle",
+    "specModelVal": "Phillip (Il/Lui)",
+    "specVersion": "Version",
+    "specFirmware": "Micrologiciel",
+    "specFirmwareVal": "Ingénieur Logiciel",
+    "specStatus": "Statut",
+    "specStatusVal": "Doctorat en cours · Robotique / Génie Logiciel",
+    "prosHeading": "Fonctionnalités (Avantages)",
+    "pro1": "Curiosité profonde — analyse les systèmes et valorise la planification avant d'écrire du code",
+    "pro2": "Enthousiasme authentique pour le métier — code parce qu'il l'aime",
+    "pro3": "Résilient — mène ses engagements à terme",
+    "pro4": "Large palette technique : systèmes embarqués, gestion mémoire, C/C++/C#, Java, Python, Rust, réseaux",
+    "pro5": "Apprentissage rapide de nouveaux outils et bibliothèques",
+    "consHeading": "Limitations Connues (Inconvénients)",
+    "con1": "Pas encore expert dans un seul langage — bonne polyvalence, profondeur en développement",
+    "con2": "S'enthousiasme et peut sur-expliquer des découvertes intéressantes",
+    "con3": "85% professionnel — garde le travail amusant, traite le code comme une expression personnelle",
+    "useCasesHeading": "Cas d'Utilisation Prévus",
+    "use1": "Programmation système et ingénierie bas niveau",
+    "use2": "Recherche en robotique, ML ou génie logiciel",
+    "use3": "Équipes valorisant la curiosité et l'artisanat",
+    "use4": "Programmes doctoraux en robotique ou génie logiciel",
+    "missionHeading": "Déclaration de Mission",
+    "missionText": "Construire des technologies à impact positif : dépollution des océans, efficacité énergétique, robotique d'assistance, vie durable et technologies médicales."
+  },
+  "projects": {
+    "title": "Projets & Compétences",
+    "skillsHeading": "Compétences Techniques",
+    "reposHeading": "Projets GitHub",
+    "loading": "Chargement des dépôts…",
+    "errorMsg": "Impossible de charger les dépôts.",
+    "errorLink": "Voir sur GitHub →"
+  }
+}

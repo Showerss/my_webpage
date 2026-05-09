@@ -1,0 +1,45 @@
+{
+  "nav": {
+    "userManual": "Manuale Utente",
+    "projects": "Progetti e Competenze",
+    "langSelect": "Seleziona lingua"
+  },
+  "userManual": {
+    "title": "Manuale Utente",
+    "name": "Phillip",
+    "tagline": "Ingegnere del Software · Lui",
+    "overviewHeading": "Panoramica del Prodotto",
+    "specModel": "Modello",
+    "specModelVal": "Phillip (Lui)",
+    "specVersion": "Versione",
+    "specFirmware": "Firmware",
+    "specFirmwareVal": "Ingegnere del Software",
+    "specStatus": "Stato",
+    "specStatusVal": "Dottorato in corso · Robotica / Ingegneria del Software",
+    "prosHeading": "Caratteristiche (Vantaggi)",
+    "pro1": "Curiosità profonda — analizza i sistemi e valorizza la pianificazione prima di scrivere codice",
+    "pro2": "Autentico entusiasmo per il mestiere — programma perché lo ama",
+    "pro3": "Resiliente — porta i suoi impegni a termine",
+    "pro4": "Ampio spettro tecnico: sistemi embedded, gestione della memoria, C/C++/C#, Java, Python, Rust, reti",
+    "pro5": "Apprendimento rapido di nuovi strumenti e librerie",
+    "consHeading": "Limitazioni Note (Svantaggi)",
+    "con1": "Non ancora esperto in un singolo linguaggio — ampia conoscenza, profondità in sviluppo",
+    "con2": "Si entusiasma e può spiegare eccessivamente le scoperte interessanti",
+    "con3": "~85% professionale — mantiene il lavoro divertente, tratta il codice come espressione personale",
+    "useCasesHeading": "Casi d'Uso Previsti",
+    "use1": "Programmazione di sistema e ingegneria a basso livello",
+    "use2": "Ricerca in robotica, ML o ingegneria del software",
+    "use3": "Team che valorizzano curiosità e artigianalità",
+    "use4": "Programmi di dottorato in robotica o ingegneria del software",
+    "missionHeading": "Dichiarazione di Missione",
+    "missionText": "Sviluppare tecnologie con impatto positivo reale: pulizia degli oceani, efficienza energetica, robotica assistiva, vita sostenibile e tecnologia medica."
+  },
+  "projects": {
+    "title": "Progetti e Competenze",
+    "skillsHeading": "Competenze Tecniche",
+    "reposHeading": "Progetti GitHub",
+    "loading": "Caricamento repository…",
+    "errorMsg": "Impossibile caricare i repository.",
+    "errorLink": "Vedi su GitHub →"
+  }
+}
