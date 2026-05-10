@@ -580,9 +580,10 @@ function initContactForm() {
       if (res.ok) {
         status.className   = 'contact-status contact-status--success';
         status.textContent = pick(RITUAL_SUCCESS);
-        loadPersona(); // fresh defaults ready for a follow-up message
+        loadPersona();
       } else {
-        throw new Error(`HTTP ${res.status}`);
+        status.className   = 'contact-status contact-status--error';
+        status.textContent = pick(RITUAL_ERROR);
       }
     } catch {
       status.className   = 'contact-status contact-status--error';
