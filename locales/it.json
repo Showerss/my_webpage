@@ -1,8 +1,24 @@
 {
   "nav": {
     "userManual": "Manuale Utente",
+    "timeline": "Cronologia Lavorativa",
     "projects": "Progetti e Competenze",
+    "contact": "Contatto",
     "langSelect": "Seleziona lingua"
+  },
+  "timeline": {
+    "title": "Cronologia Lavorativa",
+    "legendMilitary": "Servizio Militare",
+    "legendTech": "IT / Ingegneria",
+    "birth": "Nascita",
+    "highschool": "Diploma Superiore",
+    "enlisted": "Arruolamento — Spec. IT",
+    "separated": "Congedo Onorevole",
+    "itjob": "Amm. IT / Reti",
+    "promoted": "Promosso Ing. di Integrazione",
+    "usd": "Lasciato lavoro · Iscritto, Univ. di San Diego",
+    "graduated": "Laurea Triennale, Informatica",
+    "northeastern": "Magistrale, Univ. Northeastern"
   },
   "userManual": {
     "title": "Manuale Utente",

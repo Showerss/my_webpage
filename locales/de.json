@@ -1,8 +1,24 @@
 {
   "nav": {
     "userManual": "Benutzerhandbuch",
+    "timeline": "Berufsweg",
     "projects": "Projekte & Fähigkeiten",
+    "contact": "Kontakt",
     "langSelect": "Sprache auswählen"
+  },
+  "timeline": {
+    "title": "Berufsweg",
+    "legendMilitary": "Militärdienst",
+    "legendTech": "IT / Engineering",
+    "birth": "Geburt",
+    "highschool": "Schulabschluss",
+    "enlisted": "Einberufung — IT-Spezialist",
+    "separated": "Ehrenhaft Entlassen",
+    "itjob": "IT / Netzwerkadmin",
+    "promoted": "Beförderung: Integrationsingenieur",
+    "usd": "Job verlassen · Eingeschrieben, Univ. San Diego",
+    "graduated": "Bachelor Informatik",
+    "northeastern": "M.Sc., Northeastern University"
   },
   "userManual": {
     "title": "Benutzerhandbuch",

@@ -1170,3 +1170,191 @@ dialog:not([open]) {
 [data-theme="material"] .contact-status--loading { border-left-color: var(--g-blue); }
 [data-theme="material"] .contact-status--success { border-left-color: var(--g-green); }
 [data-theme="material"] .contact-status--error   { border-left-color: var(--g-red); }
+
+/* ============================================================
+   WORK HISTORY TIMELINE
+   Horizontal scrollable timeline with per-employment-era colour
+   bands driven by theme accent tokens.
+   ============================================================ */
+
+/* Employment-phase accent tokens — override per theme below */
+:root {
+  --timeline-military:     #BABCFA;
+  --timeline-military-rgb: 186, 188, 250;
+  --timeline-tech:         #2CB5AA;
+  --timeline-tech-rgb:     44, 181, 170;
+}
+
+[data-theme="crt"] {
+  --timeline-military:     var(--crt-2);
+  --timeline-military-rgb: var(--crt-2-rgb);
+  --timeline-tech:         var(--crt-3);
+  --timeline-tech-rgb:     var(--crt-3-rgb);
+}
+
+[data-theme="material"] {
+  --timeline-military:     var(--g-blue);
+  --timeline-military-rgb: var(--g-blue-rgb);
+  --timeline-tech:         var(--g-green);
+  --timeline-tech-rgb:     var(--g-green-rgb);
+}
+
+/* Wider dialog shell for the timeline */
+.mac-os-window--wide {
+  width: min(1100px, 95vw);
+}
+
+/* Strip default window-content padding; flex column so legend + scroll stack */
+.window-content--timeline {
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Legend ── */
+.timeline-legend {
+  display: flex;
+  gap: var(--sp-lg);
+  padding: var(--sp-sm) var(--sp-lg);
+  border-bottom: 1px solid var(--color-border);
+  flex-shrink: 0;
+  font-size: 0.78rem;
+  font-family: var(--font-mono);
+}
+
+.timeline-legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-xs);
+}
+
+.timeline-legend-swatch {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 1px solid currentColor;
+}
+
+.timeline-legend-item[data-phase="military"] {
+  color: var(--timeline-military);
+}
+
+.timeline-legend-item[data-phase="military"] .timeline-legend-swatch {
+  background: rgba(var(--timeline-military-rgb), 0.4);
+}
+
+.timeline-legend-item[data-phase="tech"] {
+  color: var(--timeline-tech);
+}
+
+.timeline-legend-item[data-phase="tech"] .timeline-legend-swatch {
+  background: rgba(var(--timeline-tech-rgb), 0.4);
+}
+
+/* ── Scrollable area ── */
+.timeline-scroll {
+  flex: 1;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* ── Track ── */
+.timeline-track {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  margin: 0;
+  padding: 0 var(--sp-xl);
+  position: relative;
+  min-height: 13rem;
+  align-items: stretch;
+}
+
+/* Horizontal axis — top: 4.5rem (year area) + 0.5rem (half of 1rem dot) = 5rem */
+.timeline-track::after {
+  content: '';
+  position: absolute;
+  top: 5rem;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-border);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ── Events ── */
+.timeline-event {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 9rem;
+  padding: 0 var(--sp-sm);
+  position: relative;
+}
+
+.timeline-event[data-phase="military"] {
+  background: rgba(var(--timeline-military-rgb), 0.10);
+}
+
+.timeline-event[data-phase="tech"] {
+  background: rgba(var(--timeline-tech-rgb), 0.10);
+}
+
+/* Year label — occupies 4.5rem so its bottom edge aligns with dot top */
+.timeline-year {
+  height: 4.5rem;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 0.35rem;
+  font-size: 0.82rem;
+  font-weight: bold;
+  font-family: var(--font-mono);
+  white-space: nowrap;
+}
+
+/* Dot — sits at the 4.5rem mark, center at 5rem, above the axis line */
+.timeline-dot {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background: var(--color-window-bg);
+  border: 2px solid var(--color-border);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.timeline-event[data-phase="military"] .timeline-dot {
+  background: var(--timeline-military);
+  border-color: var(--timeline-military);
+}
+
+.timeline-event[data-phase="tech"] .timeline-dot {
+  background: var(--timeline-tech);
+  border-color: var(--timeline-tech);
+}
+
+.timeline-desc {
+  padding-top: 0.5rem;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  margin: 0;
+  text-align: center;
+  max-width: 8.5rem;
+}
+
+/* Material: soften the swatch corners */
+[data-theme="material"] .timeline-legend-swatch {
+  border-radius: var(--radius-sm);
+}
+
+[data-theme="material"] .timeline-legend {
+  font-family: var(--font-sans);
+}
+
+[data-theme="material"] .timeline-year,
+[data-theme="material"] .timeline-desc {
+  font-family: var(--font-sans);
+}

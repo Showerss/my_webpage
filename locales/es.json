@@ -1,8 +1,24 @@
 {
   "nav": {
     "userManual": "Manual de Usuario",
+    "timeline": "Historial Laboral",
     "projects": "Proyectos y Habilidades",
+    "contact": "Contacto",
     "langSelect": "Seleccionar idioma"
+  },
+  "timeline": {
+    "title": "Historial Laboral",
+    "legendMilitary": "Servicio Militar",
+    "legendTech": "IT / Ingeniería",
+    "birth": "Nacimiento",
+    "highschool": "Graduación de Bachillerato",
+    "enlisted": "Alistamiento — Esp. IT",
+    "separated": "Baja Honorable",
+    "itjob": "Admin. IT / Redes",
+    "promoted": "Ascenso a Ing. de Integración",
+    "usd": "Dejó trabajo · Matriculado, Univ. de San Diego",
+    "graduated": "Licenciatura en Informática",
+    "northeastern": "Maestría, Univ. Northeastern"
   },
   "userManual": {
     "title": "Manual de Usuario",

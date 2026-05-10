@@ -1,8 +1,24 @@
 {
   "nav": {
     "userManual": "User Manual",
+    "timeline": "Work History",
     "projects": "Projects & Skills",
+    "contact": "Contact",
     "langSelect": "Select language"
+  },
+  "timeline": {
+    "title": "Work History",
+    "legendMilitary": "Military Service",
+    "legendTech": "IT / Engineering",
+    "birth": "Born",
+    "highschool": "Graduated High School",
+    "enlisted": "Enlisted — IT Specialist",
+    "separated": "Honorable Discharge",
+    "itjob": "Mid-Level IT / Network Admin",
+    "promoted": "Promoted to Integration Engineer",
+    "usd": "Left job · Enrolled, Univ. of San Diego",
+    "graduated": "Bachelor's, Computer Science",
+    "northeastern": "M.S. Studies, Northeastern University"
   },
   "userManual": {
     "title": "User Manual",

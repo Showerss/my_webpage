@@ -1,8 +1,24 @@
 {
   "nav": {
     "userManual": "Manuel Utilisateur",
+    "timeline": "Parcours Professionnel",
     "projects": "Projets & Compétences",
+    "contact": "Contact",
     "langSelect": "Sélectionner la langue"
+  },
+  "timeline": {
+    "title": "Parcours Professionnel",
+    "legendMilitary": "Service Militaire",
+    "legendTech": "Informatique / Ingénierie",
+    "birth": "Naissance",
+    "highschool": "Baccalauréat",
+    "enlisted": "Enrôlement — Spécialiste IT",
+    "separated": "Libération Honorable",
+    "itjob": "Admin. IT / Réseau",
+    "promoted": "Promu Ingénieur d'Intégration",
+    "usd": "Quitté le poste · Inscrit, Univ. de San Diego",
+    "graduated": "Licence Informatique",
+    "northeastern": "Master, Univ. Northeastern"
   },
   "userManual": {
     "title": "Manuel Utilisateur",

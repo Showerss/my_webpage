@@ -189,6 +189,76 @@
       </section>
     </dialog>
 
+    <!-- Work History Timeline Dialog -->
+    <dialog id="timeline-dialog" class="mac-os-window mac-os-window--wide" aria-labelledby="timeline-title">
+      <header class="window-titlebar">
+        <button class="close-btn" aria-label="Close Work History" data-close-dialog></button>
+        <h2 id="timeline-title" data-i18n="timeline.title">Work History</h2>
+        <span class="titlebar-spacer" aria-hidden="true"></span>
+      </header>
+      <section class="window-content window-content--timeline" aria-labelledby="timeline-title">
+        <div class="timeline-legend" aria-label="Timeline legend">
+          <span class="timeline-legend-item" data-phase="military">
+            <span class="timeline-legend-swatch" aria-hidden="true"></span>
+            <span data-i18n="timeline.legendMilitary">Military Service</span>
+          </span>
+          <span class="timeline-legend-item" data-phase="tech">
+            <span class="timeline-legend-swatch" aria-hidden="true"></span>
+            <span data-i18n="timeline.legendTech">IT / Engineering</span>
+          </span>
+        </div>
+        <div class="timeline-scroll" role="region" aria-label="Work history timeline — scroll horizontally" tabindex="0">
+          <ol class="timeline-track" role="list">
+            <li class="timeline-event" data-phase="">
+              <time class="timeline-year" datetime="1994">1994</time>
+              <div class="timeline-dot" aria-hidden="true"></div>
+              <p class="timeline-desc" data-i18n="timeline.birth">Born</p>
+            </li>
+            <li class="timeline-event" data-phase="">
+              <time class="timeline-year" datetime="2012">2012</time>
+              <div class="timeline-dot" aria-hidden="true"></div>
+              <p class="timeline-desc" data-i18n="timeline.highschool">Graduated High School</p>
+            </li>
+            <li class="timeline-event" data-phase="military">
+              <time class="timeline-year" datetime="2013">2013</time>
+              <div class="timeline-dot" aria-hidden="true"></div>
+              <p class="timeline-desc" data-i18n="timeline.enlisted">Enlisted — IT Specialist</p>
+            </li>
+            <li class="timeline-event" data-phase="military">
+              <time class="timeline-year" datetime="2020">2020</time>
+              <div class="timeline-dot" aria-hidden="true"></div>
+              <p class="timeline-desc" data-i18n="timeline.separated">Honorable Discharge</p>
+            </li>
+            <li class="timeline-event" data-phase="tech">
+              <time class="timeline-year" datetime="2020">2020</time>
+              <div class="timeline-dot" aria-hidden="true"></div>
+              <p class="timeline-desc" data-i18n="timeline.itjob">Mid-Level IT / Network Admin</p>
+            </li>
+            <li class="timeline-event" data-phase="tech">
+              <time class="timeline-year" datetime="2023">2023</time>
+              <div class="timeline-dot" aria-hidden="true"></div>
+              <p class="timeline-desc" data-i18n="timeline.promoted">Promoted to Integration Engineer</p>
+            </li>
+            <li class="timeline-event" data-phase="">
+              <time class="timeline-year" datetime="2023">2023</time>
+              <div class="timeline-dot" aria-hidden="true"></div>
+              <p class="timeline-desc" data-i18n="timeline.usd">Left job · Enrolled, Univ. of San Diego</p>
+            </li>
+            <li class="timeline-event" data-phase="">
+              <time class="timeline-year" datetime="2026">2026</time>
+              <div class="timeline-dot" aria-hidden="true"></div>
+              <p class="timeline-desc" data-i18n="timeline.graduated">Bachelor's, Computer Science</p>
+            </li>
+            <li class="timeline-event" data-phase="">
+              <time class="timeline-year" datetime="2026">2026</time>
+              <div class="timeline-dot" aria-hidden="true"></div>
+              <p class="timeline-desc" data-i18n="timeline.northeastern">M.S. Studies, Northeastern University</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+    </dialog>
+
     <!-- Projects & Skills Dialog -->
     <dialog id="projects-dialog" class="mac-os-window" aria-labelledby="projects-title">
       <header class="window-titlebar">

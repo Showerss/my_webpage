@@ -5,6 +5,7 @@
  */
 const SECTIONS = [
   { dialogId: 'user-manual-dialog', labelKey: 'nav.userManual', defaultLabel: 'User Manual' },
+  { dialogId: 'timeline-dialog',    labelKey: 'nav.timeline',   defaultLabel: 'Work History' },
   { dialogId: 'projects-dialog',    labelKey: 'nav.projects',   defaultLabel: 'Projects & Skills' },
   { dialogId: 'contact-dialog',     labelKey: 'nav.contact',    defaultLabel: 'Contact' },
 ];
