@@ -41,5 +41,19 @@
     "loading": "Chargement des dépôts…",
     "errorMsg": "Impossible de charger les dépôts.",
     "errorLink": "Voir sur GitHub →"
+  },
+  "contact": {
+    "title": "Contact",
+    "labelName": "Nom",
+    "labelEmail": "E-mail",
+    "labelReason": "Motif",
+    "labelMessage": "Message",
+    "reasonPlaceholder": "Choisir un motif…",
+    "reasonJob": "Opportunité d'emploi",
+    "reasonResearch": "Collaboration de recherche",
+    "reasonPhd": "Programme de doctorat",
+    "reasonGeneral": "Renseignement général",
+    "reasonOther": "Autre",
+    "submit": "Envoyer"
   }
 }

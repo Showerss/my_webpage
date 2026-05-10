@@ -6,6 +6,7 @@
 const SECTIONS = [
   { dialogId: 'user-manual-dialog', labelKey: 'nav.userManual', defaultLabel: 'User Manual' },
   { dialogId: 'projects-dialog',    labelKey: 'nav.projects',   defaultLabel: 'Projects & Skills' },
+  { dialogId: 'contact-dialog',     labelKey: 'nav.contact',    defaultLabel: 'Contact' },
 ];
 
 const GITHUB_USER = 'Showerss';
@@ -233,6 +234,364 @@ function initTheme() {
   });
 }
 
+// ─── Contact form ─────────────────────────────────────────────────────────────
+
+// Sign up at formspree.io, create a form, then replace YOUR_FORM_ID.
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+
+const RITUAL_LOADING = 'preparing the ritual…';
+
+const RITUAL_SUCCESS = [
+  'The ritual is complete. Your message has been bound and delivered.',
+  'The spirits have accepted your offering. Phillip has been summoned.',
+  'Transmission successful. The runes are inscribed. Await a reply from the void.',
+  'Your scroll has been sealed and dispatched by raven. A response shall come.',
+  'The sigil is drawn. Your words now echo across the astral plane.',
+  'It is done. The dark courier has taken your message into the between-spaces.',
+  'Your offering has been accepted. The stars have aligned in acknowledgement.',
+  'Message delivered beyond the veil. Phillip has been alerted by means best left unspecified.',
+  'The rite succeeded. Expect a reply before the next conjunction of the outer spheres.',
+  'Delivered. The elder gods noted your message with mild, eldritch interest.',
+];
+
+const RITUAL_ERROR = [
+  'The ritual failed. A dark force intercepted your offering. Try again, mortal.',
+  'The void did not accept your scroll. Verify your fields and try again.',
+  'Error: the ritual circle is broken. The ether could not carry your message.',
+  'Your message was consumed by shadow before it could arrive. Please retry.',
+  'The stars are not aligned. Your words float, undelivered, in the between-spaces.',
+  'A shoggoth ate the packet. This is not a metaphor. Please retry.',
+  'The dark courier returned your message unopened. Check your details and reattempt the rite.',
+  'Transmission failed. The Old Ones are displeased, though admittedly that is not new.',
+  'The portal collapsed mid-send. Your message is somewhere in the void. Try again.',
+  'Ritual interrupted by an unforeseen elder entity. The network is temporarily cursed.',
+];
+
+const RITUAL_PERSONAS = [
+  {
+    name:    'Cornelius P. Tentacle',
+    email:   'c.tentacle@rlyeh.deep',
+    reason:  'job',
+    message: "My previous employer was consumed by a dimensional rift. Seeking new opportunities — remote preferred, as the commute from R'lyeh is deeply unpredictable.",
+  },
+  {
+    name:    'Lavinia Whateley',
+    email:   'lavinia@dunwich.local',
+    reason:  'research',
+    message: 'I am conducting research into geometries that should not exist and require a collaborator unbothered by angles beyond the fourth dimension.',
+  },
+  {
+    name:    'Herbert West III',
+    email:   'h.west@reanimator.io',
+    reason:  'general',
+    message: 'I have perfected a serum that may or may not reverse death. Thought you might find this relevant. Side effects: mild shambling.',
+  },
+  {
+    name:    'Obed Marsh Jr.',
+    email:   'obed@innsmouth.gov',
+    reason:  'job',
+    message: 'The stars are finally right. I am available immediately. Please note: I prefer coastal offices and thrive on the night shift.',
+  },
+  {
+    name:    'Iphigenia Grimshaw',
+    email:   'i.grimshaw@miskatonic.edu',
+    reason:  'phd',
+    message: 'I wish to pursue doctoral research into the memetic properties of elder signs. My previous supervisor was driven to madness — I consider this a promising reference.',
+  },
+  {
+    name:    'Nyarlathotep R. Jones',
+    email:   'crawling.chaos@outer.dark',
+    reason:  'general',
+    message: "Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn. Also — do you offer remote work? The commute from the Void is genuinely unreasonable.",
+  },
+  {
+    name:    'Pickman G. Ghoulsworth',
+    email:   'pickman@ghoul.gallery',
+    reason:  'research',
+    message: 'I am an artist with a very particular perspective on the human form. My models are difficult to schedule but extremely dedicated.',
+  },
+  {
+    name:    'Azathoth, Blind Idiot',
+    email:   'azathoth@nuclear.chaos',
+    reason:  'general',
+    message: 'I have dreamt at the centre of ultimate chaos for millennia and your portfolio disrupted my slumber. This is either a complaint or a compliment — I genuinely cannot tell.',
+  },
+  {
+    name:    'Seraphina Dreadmoore',
+    email:   's.dreadmoore@nightshade.eld',
+    reason:  'job',
+    message: 'I bring seven centuries of cross-functional experience serving the Old Ones. Proficient in dark rituals, forbidden tomes, and stakeholder management.',
+  },
+  {
+    name:    'Thaddeus von Gloom',
+    email:   'thaddeus@cyclopean.city',
+    reason:  'research',
+    message: "I have mapped seventeen non-Euclidean cities and would love to collaborate. Fair warning: my field notes are written in an alphabet that predates mankind.",
+  },
+  {
+    name:    'Wilbur Whateley Jr.',
+    email:   'w.whateley@dunwich.local',
+    reason:  'job',
+    message: 'I am told I have a face for remote work. Seeking a fully distributed team where video is optional and questions about my appearance are gently discouraged.',
+  },
+  {
+    name:    'Randolph Carter, Esq.',
+    email:   'r.carter@dreamlands.net',
+    reason:  'research',
+    message: 'I have traversed the Dreamlands, scaled Kadath, and spoken with the gods of Earth. I believe this qualifies me for at least a mid-level research position.',
+  },
+  {
+    name:    'Professor H.P. Armitage',
+    email:   'armitage@miskatonic.edu',
+    reason:  'phd',
+    message: 'I am seeking a PhD candidate to assist with translating the Necronomicon into a modern microservices architecture. Funding is available. NDAs required.',
+  },
+  {
+    name:    'Dagon, Lord of the Deep',
+    email:   'dagon@innsmouth.gov',
+    reason:  'job',
+    message: 'I oversee a large distributed team of Deep Ones and have extensive experience in aquatic infrastructure. Open to hybrid roles — water and land.',
+  },
+  {
+    name:    'Yog-Sothoth (The Gate)',
+    email:   'yog-sothoth@all-in-one.void',
+    reason:  'general',
+    message: 'I am the key and the gate. I am also available for consulting engagements. My rate is one soul per sprint or negotiable in cosmic favours.',
+  },
+  {
+    name:    'Gerald Fungi, Mi-Go Regional',
+    email:   'g.fungi@yuggoth.biz',
+    reason:  'job',
+    message: 'Our mining operations on Yuggoth have hit some regulatory obstacles. I am exploring a career pivot and believe software engineering could be a good fit.',
+  },
+  {
+    name:    'The Colour (Out of Space)',
+    email:   'thecolour@spectral.void',
+    reason:  'general',
+    message: 'I do not have a name that human language can express, but I have excellent chromatic skills and am available immediately. References: the Gardner farm.',
+  },
+  {
+    name:    'Elder Thing Consulting LLC',
+    email:   'et.consulting@antarctic.ice',
+    reason:  'research',
+    message: 'We pioneered life on this planet several hundred million years ago and are now pivoting to technology consulting. Our previous clients include all of biology.',
+  },
+  {
+    name:    'Zkauba of the Great Race',
+    email:   'zkauba@yith.edu',
+    reason:  'phd',
+    message: 'I have inhabited seventeen bodies across four geological epochs. My research interests include temporal mechanics, cognitive displacement, and tuition waivers.',
+  },
+  {
+    name:    'Shoggoth (No Surname)',
+    email:   'shoggoth@tekeli.li',
+    reason:  'job',
+    message: "Tekeli-li. Tekeli-li. I am a highly adaptable team player and can take any shape the role requires. References available upon request. Tekeli-li.",
+  },
+  {
+    name:    'Mordicai Blackthorn',
+    email:   'm.blackthorn@hexwood.eld',
+    reason:  'research',
+    message: 'I have spent forty years studying the intersection of necromancy and distributed systems. I believe we have overlapping interests and would welcome a chat.',
+  },
+  {
+    name:    'Countess Velira Duskmourne',
+    email:   'velira@duskmourne.castle',
+    reason:  'job',
+    message: 'I have led a household of seventeen thralls for three centuries. I am decisive, detail-oriented, and allergic to neither criticism nor direct sunlight. (One of those is a lie.)',
+  },
+  {
+    name:    'Archlich Morthikael',
+    email:   'morthikael@phylactery.net',
+    reason:  'phd',
+    message: 'I achieved lichdom specifically to escape the limitations of mortal scholarship. I am now seeking a PhD because it turns out you still need the credentials.',
+  },
+  {
+    name:    'Baroness Griselda Hexwood',
+    email:   'g.hexwood@blighted.fen',
+    reason:  'general',
+    message: 'My familiar intercepted a crow carrying word of your work. I have some questions. Please respond before the next new moon — I will be occupied with a ritual.',
+  },
+  {
+    name:    'Xibalba Q. Bonecrown',
+    email:   'xq.bonecrown@underworld.gov',
+    reason:  'job',
+    message: 'I currently manage the administrative operations of an underworld spanning twelve death-realms. Seeking a change of pace and a better work-life balance.',
+  },
+  {
+    name:    'Ragnara the Undying',
+    email:   'ragnara@undying.horde',
+    reason:  'research',
+    message: 'I have died four times and each resurrection has granted me new perspective. I am researching whether there is a theoretical upper bound on this.',
+  },
+  {
+    name:    'Sir Aldric Plaguemantle',
+    email:   'a.plaguemantle@knighthood.blk',
+    reason:  'other',
+    message: 'I represent the Order of the Blighted Lance. We are interested in sponsoring your work, provided you are comfortable with our branding guidelines (mostly skulls).',
+  },
+  {
+    name:    'Elowen Shadowmere',
+    email:   'elowen@shadowmere.moor',
+    reason:  'general',
+    message: 'I found your portfolio while wandering an infinite fog-bound moor at 3am. It was either a cosmic sign or an algorithm. Either way, here I am.',
+  },
+  {
+    name:    'Gormath the Pale',
+    email:   'gormath@pale.court',
+    reason:  'job',
+    message: 'My last role ended when the kingdom I served was swallowed by a generational curse. Looking to transition into a more stable industry. Open to contract work.',
+  },
+  {
+    name:    'Thessaly Vex',
+    email:   'thessaly@hexcraft.io',
+    reason:  'research',
+    message: 'I have hexed seventeen compilers and two entire programming languages. I am interested in discussing collaborative research into why JavaScript exists.',
+  },
+  {
+    name:    'Ignatius Hexmonger',
+    email:   'i.hexmonger@spellwright.guild',
+    reason:  'phd',
+    message: 'My thesis proposes a unified theory of cursed code and legacy systems. My advisor says it is either groundbreaking or grounds for expulsion. Seeking a second opinion.',
+  },
+  {
+    name:    'Duchess Morvaine Ashen',
+    email:   'morvaine@ashen.duchy',
+    reason:  'job',
+    message: 'I ruled the Duchy of Ashen for two hundred years before it was claimed by blight. I have strong opinions about infrastructure and am extremely available.',
+  },
+  {
+    name:    'The Nameless Scrivener',
+    email:   'noname@voidscript.ink',
+    reason:  'general',
+    message: 'I have written every forbidden text since the first age of the world. My current availability is good. My rates are competitive. I do not do cover letters.',
+  },
+  {
+    name:    'Brother Carrow Deathwhisper',
+    email:   'c.deathwhisper@ossuary.org',
+    reason:  'phd',
+    message: 'My monastic order studies the philosophy of endings. I am applying to doctoral programmes as part of my personal journey toward understanding beginnings.',
+  },
+  {
+    name:    'Morrigan Nightcradle',
+    email:   'morrigan@nightcradle.fae',
+    reason:  'research',
+    message: 'I crossed from the Unseelie Court specifically to make contact with you. The fae do not do this lightly. Please reply promptly — I cannot stay in this realm indefinitely.',
+  },
+  {
+    name:    'Ptolemy Wraithbone',
+    email:   'p.wraithbone@tomb-scholars.net',
+    reason:  'job',
+    message: 'I have catalogued the contents of nine thousand tombs and am looking to apply these archival skills in a more growth-oriented environment.',
+  },
+  {
+    name:    'Cressida Wolfsbane',
+    email:   'cressida@wolfsbane.hex',
+    reason:  'other',
+    message: 'I am reaching out on behalf of a consortium of witches who have followed your work with great interest. We have funding, questions, and a cauldron.',
+  },
+  {
+    name:    'Executor Vreth',
+    email:   'vreth@darklord.exec',
+    reason:  'general',
+    message: 'I handle all correspondence for the Dark Lord, who prefers not to email directly. He finds your portfolio intriguing and wishes to discuss terms. No pressure.',
+  },
+  {
+    name:    'Ondine, She Who Drowns',
+    email:   'ondine@the-deep.tides',
+    reason:  'research',
+    message: 'I am a water spirit with a deep interest in fluid dynamics and recursive systems. I believe our research interests overlap. Please meet me at the shoreline at midnight.',
+  },
+  {
+    name:    'Grand Archivist Skullum',
+    email:   'g.skullum@forbidden-library.eld',
+    reason:  'phd',
+    message: 'I maintain the Forbidden Library and have read everything humanity was not meant to see. I am pursuing a PhD because apparently that still matters.',
+  },
+];
+
+function pick(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function initContactForm() {
+  const dialog = document.getElementById('contact-dialog');
+  const form   = document.getElementById('contact-form');
+  const status = document.getElementById('contact-status');
+  if (!dialog || !form || !status) return;
+
+  function setField(el, value) {
+    el.value = value;
+    el.dataset.personaDefault = value;
+  }
+
+  function loadPersona() {
+    const p = pick(RITUAL_PERSONAS);
+    setField(form.elements['name'],    p.name);
+    setField(form.elements['email'],   p.email);
+    setField(form.elements['message'], p.message);
+    form.elements['reason'].value = p.reason;
+  }
+
+  // Clear on first focus; restore the persona default on blur if left empty.
+  ['name', 'email', 'message'].forEach(fieldName => {
+    const el = form.elements[fieldName];
+    el.addEventListener('focus', () => {
+      if (el.value === el.dataset.personaDefault) el.value = '';
+    });
+    el.addEventListener('blur', () => {
+      if (!el.value) el.value = el.dataset.personaDefault ?? '';
+    });
+  });
+
+  // Fresh persona every time the dialog opens; also clear any previous status.
+  new MutationObserver(mutations => {
+    for (const m of mutations) {
+      if (m.attributeName === 'open' && dialog.hasAttribute('open')) {
+        loadPersona();
+        status.hidden    = true;
+        status.className = 'contact-status';
+      }
+    }
+  }).observe(dialog, { attributes: true, attributeFilter: ['open'] });
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    const submitBtn = form.querySelector('[type="submit"]');
+    submitBtn.disabled = true;
+
+    status.hidden      = false;
+    status.className   = 'contact-status contact-status--loading';
+    status.textContent = RITUAL_LOADING;
+
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method:  'POST',
+        body:    new FormData(form),
+        headers: { Accept: 'application/json' },
+      });
+
+      if (res.ok) {
+        status.className   = 'contact-status contact-status--success';
+        status.textContent = pick(RITUAL_SUCCESS);
+        loadPersona(); // fresh defaults ready for a follow-up message
+      } else {
+        throw new Error(`HTTP ${res.status}`);
+      }
+    } catch {
+      status.className   = 'contact-status contact-status--error';
+      status.textContent = pick(RITUAL_ERROR);
+    } finally {
+      submitBtn.disabled = false;
+    }
+  });
+}
+
 // ─── Boot ─────────────────────────────────────────────────────────────────────
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -241,4 +600,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initLocale();
   initTheme();
   loadGitHubRepos();
+  initContactForm();
 });

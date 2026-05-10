@@ -41,5 +41,19 @@
     "loading": "Repositories werden geladen…",
     "errorMsg": "Repositories konnten nicht geladen werden.",
     "errorLink": "Auf GitHub ansehen →"
+  },
+  "contact": {
+    "title": "Kontakt",
+    "labelName": "Name",
+    "labelEmail": "E-Mail",
+    "labelReason": "Grund",
+    "labelMessage": "Nachricht",
+    "reasonPlaceholder": "Grund auswählen…",
+    "reasonJob": "Jobangebot",
+    "reasonResearch": "Forschungskooperation",
+    "reasonPhd": "Promotionsprogramm",
+    "reasonGeneral": "Allgemeine Anfrage",
+    "reasonOther": "Sonstiges",
+    "submit": "Nachricht senden"
   }
 }

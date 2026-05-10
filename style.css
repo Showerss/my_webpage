@@ -192,6 +192,11 @@ html[data-theme="crt"] body::after {
 [data-theme="crt"] .skills-list > li:nth-child(4n+3) .skill-tag { box-shadow: 0 3px 0 var(--crt-3); }
 [data-theme="crt"] .skills-list > li:nth-child(4n)   .skill-tag { box-shadow: 0 3px 0 var(--crt-4); }
 
+/* Contact form status colours */
+[data-theme="crt"] .contact-status--loading { border-left-color: var(--crt-2); }
+[data-theme="crt"] .contact-status--success { border-left-color: var(--crt-3); }
+[data-theme="crt"] .contact-status--error   { border-left-color: var(--crt-4); }
+
 /* Close button — coral signals danger */
 [data-theme="crt"] .close-btn:hover {
   background: var(--crt-4);
@@ -770,6 +775,96 @@ dialog:not([open]) {
 .repo-meta time { margin-left: auto; opacity: 0.55; }
 
 /* ============================================================
+   CONTACT FORM
+   ============================================================ */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-md);
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-xs);
+}
+
+.form-field label {
+  font-size: 0.72rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.7;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  padding: var(--sp-xs) var(--sp-sm);
+  width: 100%;
+}
+
+.form-field textarea {
+  resize: vertical;
+  min-height: 6rem;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.submit-btn {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: bold;
+  background: var(--color-text);
+  color: var(--color-window-bg);
+  border: 2px solid var(--color-border);
+  padding: var(--sp-xs) var(--sp-lg);
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background: var(--color-primary);
+  color: var(--color-text);
+}
+
+.submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.submit-btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.contact-status {
+  margin-top: var(--sp-md);
+  padding: var(--sp-sm) var(--sp-md);
+  font-size: 0.88rem;
+  border: 1px solid var(--color-border);
+  border-left-width: 3px;
+  line-height: 1.5;
+}
+
+.contact-status--loading { font-style: italic; opacity: 0.75; }
+
+/* ============================================================
    LOADING / ERROR STATES
    ============================================================ */
 .loading-state {
@@ -1051,3 +1146,27 @@ dialog:not([open]) {
 /* Repo meta — language in green, stars in amber */
 [data-theme="material"] .repo-lang  { color: #137333; }
 [data-theme="material"] .repo-stars { color: #92600A; opacity: 1; }
+
+/* Contact form — rounded inputs, blue focus, semantic status colours */
+[data-theme="material"] .form-field input,
+[data-theme="material"] .form-field select,
+[data-theme="material"] .form-field textarea {
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+}
+
+[data-theme="material"] .submit-btn {
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  background: var(--g-blue);
+  border-color: transparent;
+}
+
+[data-theme="material"] .submit-btn:hover:not(:disabled) {
+  background: #1a73e8;
+  color: #ffffff;
+}
+
+[data-theme="material"] .contact-status--loading { border-left-color: var(--g-blue); }
+[data-theme="material"] .contact-status--success { border-left-color: var(--g-green); }
+[data-theme="material"] .contact-status--error   { border-left-color: var(--g-red); }

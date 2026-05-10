@@ -41,5 +41,19 @@
     "loading": "Caricamento repository…",
     "errorMsg": "Impossibile caricare i repository.",
     "errorLink": "Vedi su GitHub →"
+  },
+  "contact": {
+    "title": "Contatto",
+    "labelName": "Nome",
+    "labelEmail": "E-mail",
+    "labelReason": "Motivo",
+    "labelMessage": "Messaggio",
+    "reasonPlaceholder": "Seleziona un motivo…",
+    "reasonJob": "Opportunità di lavoro",
+    "reasonResearch": "Collaborazione di ricerca",
+    "reasonPhd": "Programma di dottorato",
+    "reasonGeneral": "Richiesta generale",
+    "reasonOther": "Altro",
+    "submit": "Invia messaggio"
   }
 }

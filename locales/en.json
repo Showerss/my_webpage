@@ -41,5 +41,19 @@
     "loading": "Loading repositories…",
     "errorMsg": "Could not load repositories.",
     "errorLink": "View on GitHub →"
+  },
+  "contact": {
+    "title": "Contact",
+    "labelName": "Name",
+    "labelEmail": "Email",
+    "labelReason": "Reason",
+    "labelMessage": "Message",
+    "reasonPlaceholder": "Select a reason…",
+    "reasonJob": "Job Opportunity",
+    "reasonResearch": "Research Collaboration",
+    "reasonPhd": "PhD Program",
+    "reasonGeneral": "General Inquiry",
+    "reasonOther": "Other",
+    "submit": "Send Message"
   }
 }
