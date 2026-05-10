@@ -1,21 +1,35 @@
 <!DOCTYPE html>
 
-
-
 <html lang="en" data-theme="crt">
+
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Phillip — Software Engineer. Systems thinker, curious builder, aspiring PhD candidate.">
+
+  <!-- Open Graph — controls link preview cards on LinkedIn, Slack, iMessage, etc.
+       Replace the TODO values once the site is deployed. -->
+  <meta property="og:title"       content="Phillip — Software Engineer">
+  <meta property="og:description" content="Systems thinker, curious builder, aspiring PhD candidate.">
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="TODO: https://your-deployed-url.com">
+  <meta property="og:image"       content="TODO: https://your-deployed-url.com/assets/img/og-image.png">
+
   <title>Phillip — Software Engineer</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css">
+  <!-- type="module" enables ES module syntax and auto-defers execution until the DOM is parsed -->
   <script src="main.js" type="module"></script>
 </head>
 
 
 
 <body>
-  <main>
+  <!-- First focusable element on the page; visible only on keyboard focus so sighted users never see it. -->
+  <a href="#main-content" class="skip-link">Skip to content</a>
+  <main id="main-content">
+    <h1 class="page-watermark">Phillip</h1>
     <nav class="floating-nav" aria-label="Main navigation">
       <ul id="nav-list" role="list">
         <!-- Populated by main.js from SECTIONS config -->
@@ -35,6 +49,7 @@
         <select id="theme-select">
           <option value="crt" selected>CRT</option>
           <option value="clean">Clean</option>
+          <option value="material">Material</option>
         </select>
       </div>
     </nav>
@@ -49,20 +64,23 @@
     <!-- User Manual Dialog -->
     <dialog id="user-manual-dialog" class="mac-os-window" aria-labelledby="user-manual-title">
       <header class="window-titlebar">
+        <!-- data-close-dialog: presence of this attribute is the signal JS uses to wire up the close handler. No value needed. -->
         <button class="close-btn" aria-label="Close User Manual" data-close-dialog></button>
         <h2 id="user-manual-title" data-i18n="userManual.title">User Manual</h2>
         <span class="titlebar-spacer" aria-hidden="true"></span>
       </header>
-      <section class="window-content">
+      <!-- aria-labelledby reuses the dialog's <h2> id so this <section> has an accessible name
+           in the landmark tree without needing a separate visible heading. -->
+      <section class="window-content" aria-labelledby="user-manual-title">
 
         <figure class="profile-figure">
           <!-- Drop your photo at assets/img/profile.jpg -->
           <img
-            src="assets/img/profile.jpg"
-            alt="Phillip"
+            src="assets/images/image_of_phil.jpeg"
+            alt="Portrait photo of Phillip"
             class="profile-photo"
-            width="80"
-            height="80"
+            width="400"
+            height="300"
           >
           <figcaption>
             <strong data-i18n="userManual.name">Phillip</strong>
@@ -70,7 +88,13 @@
           </figcaption>
         </figure>
 
-        <article>
+        <!-- data-i18n="key.path": JS resolves this against the active locale JSON
+             and replaces the element's textContent. English text is the no-JS fallback. -->
+        <!-- <section> not <article>: these blocks are subdivisions of the User Manual,
+             not self-contained units that could be distributed independently.
+             <article> is for content that makes sense in isolation (e.g. a blog post, a repo card).
+             The GitHub repo cards built by JS are correctly <article> for the same reason. -->
+        <section>
           <h3 data-i18n="userManual.overviewHeading">Product Overview</h3>
           <dl class="spec-list">
             <dt data-i18n="userManual.specModel">Model</dt>
@@ -85,42 +109,42 @@
             <dt data-i18n="userManual.specStatus">Status</dt>
             <dd data-i18n="userManual.specStatusVal">Pursuing PhD · Robotics / Software Eng.</dd>
           </dl>
-        </article>
+        </section>
 
-        <article>
+        <section>
           <h3 data-i18n="userManual.prosHeading">Features (Pros of Hiring)</h3>
-          <ul class="feature-list feature-list--pro">
+          <ul role="list" class="feature-list feature-list--pro">
             <li data-i18n="userManual.pro1">Deep curiosity — digs into systems and values planning before writing code</li>
             <li data-i18n="userManual.pro2">Genuine enthusiasm for the craft — codes because he loves it</li>
             <li data-i18n="userManual.pro3">Resilient — sees commitments through to completion</li>
             <li data-i18n="userManual.pro4">Broad technical range: embedded systems, memory management, C/C++/C#, Java, Python, Rust, networking</li>
             <li data-i18n="userManual.pro5">Fast learner across new tools and libraries</li>
           </ul>
-        </article>
+        </section>
 
-        <article>
+        <section>
           <h3 data-i18n="userManual.consHeading">Known Limitations (Cons)</h3>
-          <ul class="feature-list feature-list--con">
+          <ul role="list" class="feature-list feature-list--con">
             <li data-i18n="userManual.con1">Not yet master-level in any single language — strong breadth, building depth</li>
             <li data-i18n="userManual.con2">Gets excited and may over-explain interesting findings</li>
             <li data-i18n="userManual.con3">Leans ~85% professional — keeps work fun, treats code as personal expression</li>
           </ul>
-        </article>
+        </section>
 
-        <article>
+        <section>
           <h3 data-i18n="userManual.useCasesHeading">Intended Use Cases</h3>
-          <ul class="feature-list feature-list--neutral">
+          <ul role="list" class="feature-list feature-list--neutral">
             <li data-i18n="userManual.use1">Systems programming and low-level engineering roles</li>
             <li data-i18n="userManual.use2">Research in robotics, ML, or software engineering</li>
             <li data-i18n="userManual.use3">Teams that value curiosity and craftsmanship</li>
             <li data-i18n="userManual.use4">PhD programs in robotics or software engineering</li>
           </ul>
-        </article>
+        </section>
 
-        <article>
+        <section>
           <h3 data-i18n="userManual.missionHeading">Mission Statement</h3>
           <p data-i18n="userManual.missionText">Building technology with real-world positive impact: ocean cleanup, energy efficiency, assistive robotics, sustainable living, and medical tech.</p>
-        </article>
+        </section>
 
       </section>
     </dialog>
@@ -132,9 +156,9 @@
         <h2 id="projects-title" data-i18n="projects.title">Projects &amp; Skills</h2>
         <span class="titlebar-spacer" aria-hidden="true"></span>
       </header>
-      <section class="window-content">
+      <section class="window-content" aria-labelledby="projects-title">
 
-        <article>
+        <section>
           <h3 data-i18n="projects.skillsHeading">Technical Skills</h3>
           <ul class="skills-list" role="list" aria-label="Technical skills">
             <li><span class="skill-tag">HTML5</span></li>
@@ -153,10 +177,12 @@
             <li><span class="skill-tag">Networking</span></li>
             <li><span class="skill-tag">Accessibility (a11y)</span></li>
           </ul>
-        </article>
+        </section>
 
-        <article>
+        <section>
           <h3 data-i18n="projects.reposHeading">GitHub Projects</h3>
+          <!-- aria-live="polite": screen readers announce content changes in this region.
+               aria-busy="true": tells screen readers content is still loading; JS removes it when repos are ready. -->
           <div
             id="github-repos"
             class="github-repos"
@@ -165,7 +191,7 @@
           >
             <p class="loading-state" data-i18n="projects.loading">Loading repositories…</p>
           </div>
-        </article>
+        </section>
 
       </section>
     </dialog>

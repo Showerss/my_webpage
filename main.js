@@ -29,10 +29,13 @@ function buildNav() {
     list.append(li);
   }
 
+  // One listener on the list handles all button clicks (event delegation).
+  // closest() walks up the DOM so clicks on child nodes still match .nav-btn.
   list.addEventListener('click', e => {
     const btn = e.target.closest('.nav-btn');
     if (!btn) return;
     const dialog = document.getElementById(btn.dataset.dialog);
+    // Toggle: clicking an open dialog's button closes it instead of re-opening.
     dialog?.open ? closeDialog(dialog) : openDialog(btn.dataset.dialog);
   });
 }
@@ -40,6 +43,7 @@ function buildNav() {
 // ─── Dialog management ────────────────────────────────────────────────────────
 
 function openDialog(id) {
+  // Enforce single-dialog-at-a-time: close any currently open dialog first.
   document.querySelectorAll('dialog[open]').forEach(closeDialog);
   const dialog = document.getElementById(id);
   if (!dialog) return;
@@ -128,9 +132,12 @@ async function loadGitHubRepos() {
   const container = document.getElementById('github-repos');
   if (!container) return;
 
+  // .catch(() => null) turns network errors into a null value so the
+  // null-check below handles both fetch failure and non-2xx HTTP uniformly.
   const res = await fetch(GITHUB_API).catch(() => null);
 
   if (!res || !res.ok) {
+    // aria-busy signals to screen readers that a region is loading. Remove it once settled.
     container.removeAttribute('aria-busy');
     container.innerHTML = '';
 
@@ -150,7 +157,7 @@ async function loadGitHubRepos() {
   }
 
   const repos = await res.json();
-  container.removeAttribute('aria-busy');
+  container.removeAttribute('aria-busy'); // content is ready; unblock screen reader announcements
   container.innerHTML = '';
 
   if (repos.length === 0) {
@@ -176,6 +183,8 @@ async function loadLocale(locale) {
   return localeCache[locale];
 }
 
+// Resolves a dot-separated key ("userManual.title") into a nested object.
+// e.g. getVal({userManual:{title:"X"}}, "userManual.title") → "X"
 function getVal(obj, dotKey) {
   return dotKey.split('.').reduce((acc, k) => acc?.[k], obj);
 }

@@ -1,4 +1,54 @@
 /* ============================================================
+   SELF-HOSTED FONTS  (Roboto v51 + Roboto Mono v31, Apache 2.0)
+   Latin-ext covers accented chars needed for FR, DE, ES, IT locales.
+   Each @font-face block loads only the glyphs its unicode-range needs.
+   ============================================================ */
+@font-face {
+  font-family: "Roboto";
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("assets/fonts/Roboto-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
+                 U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF,
+                 U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+                 U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Roboto";
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("assets/fonts/Roboto-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC,
+                 U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+                 U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+                 U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Roboto Mono";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("assets/fonts/RobotoMono-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
+                 U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF,
+                 U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+                 U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Roboto Mono";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("assets/fonts/RobotoMono-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC,
+                 U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+                 U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+                 U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* ============================================================
    DESIGN TOKENS
    All raw values live here. Components reference vars only.
    To add a theme: override these vars in a [data-theme="x"]
@@ -13,10 +63,9 @@
   --color-window-bg:  #FFFFFF;
   --color-window-bar: #CCCCCC;
 
-  /* Typography
-     TODO: replace with self-hosted font once assets/fonts/ is populated.
-     Add @font-face above :root and update --font-mono. */
+  /* Typography */
   --font-mono: "Courier New", Courier, monospace;
+  --font-sans: "Roboto", "Helvetica Neue", Arial, sans-serif;
 
   /* Spacing */
   --sp-xs: 0.25rem;
@@ -27,9 +76,21 @@
 
   /* Component dimensions */
   --close-btn-size:   1.5rem;
-  --dialog-max-width: 640px;
+  --dialog-max-width: 900px;
   --dialog-max-height: 80vh;
   --nav-bottom:       2rem;
+
+  /* Elevation / shadow — override in themes for different depth styles */
+  --shadow-nav:    4px 4px 0 var(--color-primary);
+  --shadow-window: 6px 6px 0 var(--color-primary);
+
+  /* Border radius — 0 keeps the retro sharp-corner aesthetic by default */
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+
+  /* Watermark heading — slightly darker than bg so it reads as a ghost */
+  --color-watermark: #E4E4E4;
 
   /* CRT overlay */
   --crt-scanline-opacity: 0.04;
@@ -91,6 +152,56 @@ html[data-theme="crt"] body::after {
 }
 
 /* ============================================================
+   CRT THEME  (Retro phosphor-terminal palette)
+   Accent tokens layered on top of the default :root values.
+   The overlay effects (scanlines, vignette, flicker) are in
+   the CRT OVERLAY block above.
+   ============================================================ */
+[data-theme="crt"] {
+  /* 4-colour retro palette — phosphor-inspired */
+  --crt-1: #BABCFA;   /* periwinkle — primary, shadows, main accent */
+  --crt-2: #E8A030;   /* amber — warm P3-phosphor glow */
+  --crt-3: #2CB5AA;   /* teal — cool phosphor / cyan */
+  --crt-4: #E05C5C;   /* coral — error LED, close/danger */
+
+  /* RGB triplets for rgba() composition */
+  --crt-1-rgb: 186, 188, 250;
+  --crt-2-rgb: 232, 160, 48;
+  --crt-3-rgb: 44, 181, 170;
+  --crt-4-rgb: 224, 92, 92;
+
+  --color-primary: var(--crt-1);
+  --shadow-nav:    4px 4px 0 var(--crt-1);
+  --shadow-window: 6px 6px 0 var(--crt-1);
+}
+
+/* Section headings — border-bottom cycles through the 4 accents */
+[data-theme="crt"] section:nth-child(4n+1) h3 { border-bottom-color: var(--crt-1); }
+[data-theme="crt"] section:nth-child(4n+2) h3 { border-bottom-color: var(--crt-2); }
+[data-theme="crt"] section:nth-child(4n+3) h3 { border-bottom-color: var(--crt-3); }
+[data-theme="crt"] section:nth-child(4n)   h3 { border-bottom-color: var(--crt-4); }
+
+/* Feature list markers — semantic colour coding */
+[data-theme="crt"] .feature-list--pro li::before     { content: '✓'; color: var(--crt-3); }
+[data-theme="crt"] .feature-list--con li::before     { content: '⚠'; color: var(--crt-4); }
+[data-theme="crt"] .feature-list--neutral li::before { content: '–'; color: var(--crt-2); opacity: 1; }
+
+/* Skill tags — keep bold invert; add a coloured bottom-shadow per slot */
+[data-theme="crt"] .skills-list > li:nth-child(4n+1) .skill-tag { box-shadow: 0 3px 0 var(--crt-1); }
+[data-theme="crt"] .skills-list > li:nth-child(4n+2) .skill-tag { box-shadow: 0 3px 0 var(--crt-2); }
+[data-theme="crt"] .skills-list > li:nth-child(4n+3) .skill-tag { box-shadow: 0 3px 0 var(--crt-3); }
+[data-theme="crt"] .skills-list > li:nth-child(4n)   .skill-tag { box-shadow: 0 3px 0 var(--crt-4); }
+
+/* Close button — coral signals danger */
+[data-theme="crt"] .close-btn:hover {
+  background: var(--crt-4);
+}
+
+/* Repo meta — teal for language, amber for stars */
+[data-theme="crt"] .repo-lang  { color: var(--crt-3); }
+[data-theme="crt"] .repo-stars { color: var(--crt-2); opacity: 1; }
+
+/* ============================================================
    RESET + BASE
    ============================================================ */
 *, *::before, *::after {
@@ -102,7 +213,9 @@ body {
   font-family: var(--font-mono);
   color: var(--color-text);
   background-color: var(--color-bg);
-  /* Dithered retro background */
+  /* Two overlapping 45° gradients offset by 2px create a dithered checkered pattern.
+     The first gradient tiles the base color; the second bleeds --color-primary through
+     at the 2px offset position, producing the visible dots. */
   background-image:
     repeating-linear-gradient(
       45deg,
@@ -120,6 +233,7 @@ body {
     );
   background-position: 0 0, 2px 2px;
   background-size: 4px 4px;
+  /* No body scroll — all content lives in <dialog> elements. This is intentional. */
   height: 100vh;
   overflow: hidden;
 }
@@ -127,6 +241,8 @@ body {
 /* ============================================================
    ACCESSIBILITY UTILITIES
    ============================================================ */
+/* Hides content visually while keeping it in the accessibility tree.
+   display:none or visibility:hidden would also hide it from screen readers. */
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -137,6 +253,52 @@ body {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+/* ============================================================
+   SKIP LINK
+   Hidden offscreen until focused; keyboard users see it as the
+   first tab stop, letting them jump past the nav bar.
+   ============================================================ */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--sp-md);
+  background: var(--color-window-bg);
+  color: var(--color-text);
+  border: 2px solid var(--color-border);
+  padding: var(--sp-xs) var(--sp-md);
+  font-family: var(--font-mono);
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-decoration: none;
+  z-index: 9999;
+}
+
+.skip-link:focus {
+  top: var(--sp-md);
+}
+
+/* ============================================================
+   PAGE WATERMARK (h1)
+   Provides the document's h1 for screen readers and SEO while
+   sitting visually behind all content as a ghost heading.
+   ============================================================ */
+.page-watermark {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: clamp(2.5rem, 9vw, 6.5rem);
+  font-weight: bold;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  color: var(--color-watermark);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
 }
 
 /* ============================================================
@@ -174,7 +336,7 @@ body {
   gap: 0;
   background: var(--color-window-bg);
   border: 2px solid var(--color-border);
-  box-shadow: 4px 4px 0 var(--color-primary);
+  box-shadow: var(--shadow-nav);
   padding: var(--sp-sm) var(--sp-md);
 }
 
@@ -281,6 +443,8 @@ dialog {
   background: transparent;
 }
 
+/* Browser UA stylesheets vary on how they hide a closed <dialog>.
+   This makes the behaviour explicit and consistent across engines. */
 dialog:not([open]) {
   display: none;
 }
@@ -292,7 +456,7 @@ dialog:not([open]) {
   max-height: var(--dialog-max-height);
   border: 2px solid var(--color-border);
   background: var(--color-window-bg);
-  box-shadow: 6px 6px 0 var(--color-primary);
+  box-shadow: var(--shadow-window);
   margin: auto; /* centering within the dialog's default position */
 }
 
@@ -303,6 +467,8 @@ dialog:not([open]) {
 /* ============================================================
    WINDOW TITLEBAR
    ============================================================ */
+/* 3-column grid: [close-btn | title stretches to fill center | invisible spacer]
+   The spacer mirrors the close-btn width so the title stays truly centred. */
 .window-titlebar {
   display: grid;
   grid-template-columns: var(--close-btn-size) 1fr var(--close-btn-size);
@@ -393,7 +559,8 @@ dialog:not([open]) {
   overflow-y: auto;
 }
 
-.window-content > article + article {
+.window-content > article + article,
+.window-content > section + section {
   margin-top: var(--sp-lg);
   padding-top: var(--sp-lg);
   border-top: 1px dashed var(--color-border);
@@ -440,9 +607,10 @@ dialog:not([open]) {
 }
 
 .profile-photo {
-  width: 80px;
-  height: 80px;
+  width: 120px;
+  height: 120px;
   object-fit: cover;
+  object-position: center top;
   border: 2px solid var(--color-border);
   box-shadow: 3px 3px 0 var(--color-primary);
   flex-shrink: 0;
@@ -598,12 +766,14 @@ dialog:not([open]) {
 
 .repo-lang   { font-weight: bold; }
 .repo-stars  { opacity: 0.7; }
+/* margin-left: auto in a flex container pushes <time> to the far right */
 .repo-meta time { margin-left: auto; opacity: 0.55; }
 
 /* ============================================================
    LOADING / ERROR STATES
    ============================================================ */
 .loading-state {
+  /* 1 / -1 spans all columns so the message isn't squashed into one cell of the repo grid */
   grid-column: 1 / -1;
   font-size: 0.9rem;
   font-style: italic;
@@ -611,8 +781,273 @@ dialog:not([open]) {
 }
 
 .error-state {
-  grid-column: 1 / -1;
+  grid-column: 1 / -1; /* same as .loading-state — span all columns */
   font-size: 0.9rem;
   border-left: 3px solid var(--color-border);
   padding-left: var(--sp-sm);
 }
+
+/* ============================================================
+   MATERIAL THEME  (Google Material Design 3)
+   Override vars + scoped component rules.
+   Zero layout CSS changes — only tokens and cosmetic details.
+   ============================================================ */
+[data-theme="material"] {
+  --color-watermark:  #F2F3F4;
+  --color-bg:         #F8F9FA;   /* Google surface grey */
+  --color-text:       #202124;   /* Google dark text */
+  --color-border:     #DADCE0;   /* Google subtle outline */
+  --color-window-bg:  #FFFFFF;
+  --color-window-bar: #F1F3F4;   /* neutral title-bar surface */
+
+  /* Full Google brand palette */
+  --g-blue:   #4285F4;
+  --g-red:    #EA4335;
+  --g-yellow: #FBBC05;
+  --g-green:  #34A853;
+
+  /* RGB triplets for rgba() composition */
+  --g-blue-rgb:   66, 133, 244;
+  --g-red-rgb:    234, 67, 53;
+  --g-yellow-rgb: 251, 188, 5;
+  --g-green-rgb:  52, 168, 83;
+
+  --color-primary: var(--g-blue);
+
+  /* Hard-stop 4-colour stripe: equal quarter segments */
+  --g-rainbow: linear-gradient(to right,
+    var(--g-blue)   0%  25%,
+    var(--g-red)   25%  50%,
+    var(--g-yellow) 50% 75%,
+    var(--g-green)  75% 100%
+  );
+
+  --shadow-nav:    0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08);
+  --shadow-window: 0 4px 12px rgba(0,0,0,0.14), 0 2px 4px rgba(0,0,0,0.10);
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+
+  --font-mono: "Roboto Mono", "Courier New", Courier, monospace;
+  --font-sans: "Roboto", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Roboto for all UI text; monospace stays for code-like elements */
+[data-theme="material"] body,
+[data-theme="material"] .nav-btn,
+[data-theme="material"] .nav-locale select,
+[data-theme="material"] .nav-theme select,
+[data-theme="material"] .window-titlebar h2,
+[data-theme="material"] .window-content,
+[data-theme="material"] .window-content p,
+[data-theme="material"] .spec-list dt,
+[data-theme="material"] .spec-list dd,
+[data-theme="material"] .feature-list li,
+[data-theme="material"] .repo-card p,
+[data-theme="material"] .repo-meta {
+  font-family: var(--font-sans);
+}
+
+/* Flat, textureless background */
+[data-theme="material"] body {
+  background-image: none;
+}
+
+/* Pill nav + 4-colour top accent stripe via pseudo-element */
+[data-theme="material"] .floating-nav {
+  border-radius: var(--radius-lg);
+  border-color: transparent;
+}
+
+[data-theme="material"] .floating-nav::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--g-rainbow);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  pointer-events: none;
+}
+
+/* Nav buttons cycle through a Google colour on hover */
+[data-theme="material"] .nav-btn {
+  border-color: transparent;
+  border-radius: var(--radius-sm);
+}
+
+[data-theme="material"] .floating-nav > ul > li:nth-child(4n+1) .nav-btn:hover,
+[data-theme="material"] .floating-nav > ul > li:nth-child(4n+1) .nav-btn[aria-expanded="true"] {
+  background: rgba(var(--g-blue-rgb), 0.12);
+  color: var(--g-blue);
+}
+
+[data-theme="material"] .floating-nav > ul > li:nth-child(4n+2) .nav-btn:hover,
+[data-theme="material"] .floating-nav > ul > li:nth-child(4n+2) .nav-btn[aria-expanded="true"] {
+  background: rgba(var(--g-red-rgb), 0.12);
+  color: var(--g-red);
+}
+
+[data-theme="material"] .floating-nav > ul > li:nth-child(4n+3) .nav-btn:hover,
+[data-theme="material"] .floating-nav > ul > li:nth-child(4n+3) .nav-btn[aria-expanded="true"] {
+  background: rgba(var(--g-yellow-rgb), 0.14);
+  color: #92600A;   /* dark amber — WCAG AA on white */
+}
+
+[data-theme="material"] .floating-nav > ul > li:nth-child(4n+4) .nav-btn:hover,
+[data-theme="material"] .floating-nav > ul > li:nth-child(4n+4) .nav-btn[aria-expanded="true"] {
+  background: rgba(var(--g-green-rgb), 0.12);
+  color: #137333;   /* darkened green for contrast */
+}
+
+/* Material selects */
+[data-theme="material"] .nav-locale select,
+[data-theme="material"] .nav-theme select {
+  border-radius: var(--radius-sm);
+}
+
+[data-theme="material"] .nav-locale select:hover,
+[data-theme="material"] .nav-theme select:hover {
+  background: rgba(var(--g-blue-rgb), 0.08);
+  color: var(--color-text);
+}
+
+/* Rounded dialog window; overflow:hidden clips children to the radius */
+[data-theme="material"] .mac-os-window {
+  border-radius: var(--radius-lg);
+  border-color: transparent;
+  overflow: hidden;
+}
+
+/* Clean title bar — 4-colour bottom stripe via background layers */
+[data-theme="material"] .window-titlebar {
+  background-color: var(--color-window-bar);
+  background-image: var(--g-rainbow);
+  background-size: 100% 3px;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  border-bottom: none;
+  border-radius: 0;   /* parent overflow:hidden handles the top corners */
+}
+
+[data-theme="material"] .window-titlebar h2 {
+  border-color: transparent;
+  border-radius: var(--radius-sm);
+  background: rgba(0, 0, 0, 0.04);
+  color: var(--color-text);
+}
+
+/* Circle close button — turns Google Red on hover */
+[data-theme="material"] .close-btn {
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.06);
+  background-image: url("assets/img/material-close.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 14px 14px;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+[data-theme="material"] .close-btn::before,
+[data-theme="material"] .close-btn::after {
+  display: none;
+}
+
+[data-theme="material"] .close-btn:hover {
+  background-color: rgba(var(--g-red-rgb), 0.14);
+}
+
+[data-theme="material"] .close-btn:active {
+  transform: scale(0.9);
+}
+
+/* Section headings — left-border accent cycling through Google colours */
+[data-theme="material"] .window-content h3 {
+  border-bottom: none;
+  border-left: 3px solid var(--g-blue);
+  padding-left: var(--sp-sm);
+  padding-bottom: 0;
+}
+
+[data-theme="material"] section:nth-child(4n+1) h3,
+[data-theme="material"] article:nth-child(4n+1) h3 { border-left-color: var(--g-blue); }
+
+[data-theme="material"] section:nth-child(4n+2) h3,
+[data-theme="material"] article:nth-child(4n+2) h3 { border-left-color: var(--g-red); }
+
+[data-theme="material"] section:nth-child(4n+3) h3,
+[data-theme="material"] article:nth-child(4n+3) h3 { border-left-color: var(--g-yellow); }
+
+[data-theme="material"] section:nth-child(4n+4) h3,
+[data-theme="material"] article:nth-child(4n+4) h3 { border-left-color: var(--g-green); }
+
+/* Feature list markers — semantic colour coding */
+[data-theme="material"] .feature-list--pro li::before     { content: '✓'; color: #137333; }
+[data-theme="material"] .feature-list--con li::before     { content: '!'; color: var(--g-red); }
+[data-theme="material"] .feature-list--neutral li::before { content: '–'; color: #92600A; }
+
+/* Profile photo — circular with soft shadow */
+[data-theme="material"] .profile-photo {
+  border-radius: 50%;
+  border-color: transparent;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.16);
+}
+
+/* Links use primary blue */
+[data-theme="material"] .window-content a {
+  color: var(--g-blue);
+}
+
+[data-theme="material"] .window-content a:hover {
+  background: rgba(var(--g-blue-rgb), 0.08);
+  color: var(--g-blue);
+}
+
+/* Skill tags cycle through all 4 Google colours */
+[data-theme="material"] .skill-tag {
+  border-radius: var(--radius-sm);
+  border-color: transparent;
+}
+
+[data-theme="material"] .skills-list > li:nth-child(4n+1) .skill-tag {
+  background: rgba(var(--g-blue-rgb), 0.12);
+  color: #1558D6;
+}
+
+[data-theme="material"] .skills-list > li:nth-child(4n+2) .skill-tag {
+  background: rgba(var(--g-red-rgb), 0.12);
+  color: #C5221F;
+}
+
+[data-theme="material"] .skills-list > li:nth-child(4n+3) .skill-tag {
+  background: rgba(var(--g-yellow-rgb), 0.16);
+  color: #92600A;
+}
+
+[data-theme="material"] .skills-list > li:nth-child(4n) .skill-tag {
+  background: rgba(var(--g-green-rgb), 0.12);
+  color: #137333;
+}
+
+/* Repo cards — rounded, white surface */
+[data-theme="material"] .repo-card {
+  border-radius: var(--radius-md);
+  background: var(--color-window-bg);
+  border-color: var(--color-border);
+}
+
+[data-theme="material"] .repo-card h4 a {
+  color: var(--g-blue);
+}
+
+[data-theme="material"] .repo-card h4 a:hover {
+  background: rgba(var(--g-blue-rgb), 0.08);
+  color: var(--g-blue);
+}
+
+/* Repo meta — language in green, stars in amber */
+[data-theme="material"] .repo-lang  { color: #137333; }
+[data-theme="material"] .repo-stars { color: #92600A; opacity: 1; }
