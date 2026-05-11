@@ -48,6 +48,14 @@
                  U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+@font-face {
+  font-family: "Cubano";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("assets/fonts/Cubano-Regular.woff2") format("woff2");
+}
+
 /* ============================================================
    DESIGN TOKENS
    All raw values live here. Components reference vars only.
@@ -362,6 +370,8 @@ body {
   font-weight: bold;
   cursor: pointer;
   white-space: nowrap;
+  position: relative;
+  overflow: hidden;
   transition: background 0.12s, color 0.12s;
 }
 
@@ -835,6 +845,8 @@ dialog:not([open]) {
   border: 2px solid var(--color-border);
   padding: var(--sp-xs) var(--sp-lg);
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
   transition: background 0.12s, color 0.12s;
 }
 
@@ -1014,6 +1026,7 @@ dialog:not([open]) {
   border-radius: var(--radius-lg);
   border-color: transparent;
   overflow: hidden;
+  transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Clean title bar — 4-colour bottom stripe via background layers */
@@ -1105,6 +1118,8 @@ dialog:not([open]) {
 [data-theme="material"] .skill-tag {
   border-radius: var(--radius-sm);
   border-color: transparent;
+  transition: box-shadow 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+              transform  0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 [data-theme="material"] .skills-list > li:nth-child(4n+1) .skill-tag {
@@ -1132,6 +1147,8 @@ dialog:not([open]) {
   border-radius: var(--radius-md);
   background: var(--color-window-bg);
   border-color: var(--color-border);
+  transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              transform  0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 [data-theme="material"] .repo-card h4 a {
@@ -1171,6 +1188,58 @@ dialog:not([open]) {
 [data-theme="material"] .contact-status--success { border-left-color: var(--g-green); }
 [data-theme="material"] .contact-status--error   { border-left-color: var(--g-red); }
 
+/* Elevation lift — dialog windows */
+[data-theme="material"] .mac-os-window:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.18), 0 4px 8px rgba(0,0,0,0.12);
+}
+
+/* Elevation lift — repo cards */
+[data-theme="material"] .repo-card:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.10);
+  transform: translateY(-3px);
+}
+
+/* Elevation lift — skill chips */
+[data-theme="material"] .skills-list > li .skill-tag:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.14);
+  transform: translateY(-1px);
+}
+
+/* ============================================================
+   RIPPLE EFFECT
+   Invisible by default — animation activated only in material
+   theme. Host elements need position:relative + overflow:hidden.
+   ============================================================ */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  width: 60px;
+  height: 60px;
+  transform: translate(-50%, -50%) scale(0);
+  background: rgba(0, 0, 0, 0.12);
+  opacity: 0;
+}
+
+@keyframes ripple-expand {
+  from {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.35;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(5);
+    opacity: 0;
+  }
+}
+
+[data-theme="material"] .ripple {
+  animation: ripple-expand 0.45s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+[data-theme="material"] .submit-btn .ripple {
+  background: rgba(255, 255, 255, 0.3);
+}
+
 /* ============================================================
    WORK HISTORY TIMELINE
    Horizontal scrollable timeline with per-employment-era colour
@@ -1179,24 +1248,30 @@ dialog:not([open]) {
 
 /* Employment-phase accent tokens — override per theme below */
 :root {
-  --timeline-military:     #BABCFA;
-  --timeline-military-rgb: 186, 188, 250;
-  --timeline-tech:         #2CB5AA;
-  --timeline-tech-rgb:     44, 181, 170;
+  --timeline-military:      #BABCFA;
+  --timeline-military-rgb:  186, 188, 250;
+  --timeline-tech:          #2CB5AA;
+  --timeline-tech-rgb:      44, 181, 170;
+  --timeline-education:     #E8A030;
+  --timeline-education-rgb: 232, 160, 48;
 }
 
 [data-theme="crt"] {
-  --timeline-military:     var(--crt-2);
-  --timeline-military-rgb: var(--crt-2-rgb);
-  --timeline-tech:         var(--crt-3);
-  --timeline-tech-rgb:     var(--crt-3-rgb);
+  --timeline-military:      var(--crt-2);
+  --timeline-military-rgb:  var(--crt-2-rgb);
+  --timeline-tech:          var(--crt-3);
+  --timeline-tech-rgb:      var(--crt-3-rgb);
+  --timeline-education:     var(--crt-4);
+  --timeline-education-rgb: var(--crt-4-rgb);
 }
 
 [data-theme="material"] {
-  --timeline-military:     var(--g-blue);
-  --timeline-military-rgb: var(--g-blue-rgb);
-  --timeline-tech:         var(--g-green);
-  --timeline-tech-rgb:     var(--g-green-rgb);
+  --timeline-military:      var(--g-blue);
+  --timeline-military-rgb:  var(--g-blue-rgb);
+  --timeline-tech:          var(--g-green);
+  --timeline-tech-rgb:      var(--g-green-rgb);
+  --timeline-education:     var(--g-yellow);
+  --timeline-education-rgb: var(--g-yellow-rgb);
 }
 
 /* Wider dialog shell for the timeline */
@@ -1252,6 +1327,14 @@ dialog:not([open]) {
   background: rgba(var(--timeline-tech-rgb), 0.4);
 }
 
+.timeline-legend-item[data-phase="education"] {
+  color: var(--timeline-education);
+}
+
+.timeline-legend-item[data-phase="education"] .timeline-legend-swatch {
+  background: rgba(var(--timeline-education-rgb), 0.4);
+}
+
 /* ── Scrollable area ── */
 .timeline-scroll {
   flex: 1;
@@ -1302,6 +1385,10 @@ dialog:not([open]) {
   background: rgba(var(--timeline-tech-rgb), 0.10);
 }
 
+.timeline-event[data-phase="education"] {
+  background: rgba(var(--timeline-education-rgb), 0.10);
+}
+
 /* Year label — occupies 4.5rem so its bottom edge aligns with dot top */
 .timeline-year {
   height: 4.5rem;
@@ -1336,6 +1423,11 @@ dialog:not([open]) {
   border-color: var(--timeline-tech);
 }
 
+.timeline-event[data-phase="education"] .timeline-dot {
+  background: var(--timeline-education);
+  border-color: var(--timeline-education);
+}
+
 .timeline-desc {
   padding-top: 0.5rem;
   font-size: 0.78rem;
@@ -1357,4 +1449,359 @@ dialog:not([open]) {
 [data-theme="material"] .timeline-year,
 [data-theme="material"] .timeline-desc {
   font-family: var(--font-sans);
+}
+
+/* ============================================================
+   MINT THEME  (Bamboo + seafoam + sky + peach — cloud sky &
+   bubble UI)
+   ============================================================ */
+
+[data-theme="mint"] {
+  /* 4-colour natural palette */
+  --mint-1: #6DB99A;   /* seafoam green — primary */
+  --mint-2: #C5A87F;   /* bamboo wood */
+  --mint-3: #8BC4D4;   /* powder sky blue */
+  --mint-4: #E8A87C;   /* warm peach / apricot */
+
+  --mint-1-rgb: 109, 185, 154;
+  --mint-2-rgb: 197, 168, 127;
+  --mint-3-rgb: 139, 196, 212;
+  --mint-4-rgb: 232, 168, 124;
+
+  --color-bg:         #BCDFD5;
+  --color-text:       #1E302B;
+  --color-border:     #5EA88A;
+  --color-window-bg:  #F7FFFC;
+  --color-window-bar: #A8D4C0;
+  --color-primary:    var(--mint-1);
+  --color-watermark:  #A8CEBF;
+
+  --shadow-nav:    0 8px 32px rgba(109,185,154,0.45), 0 2px 10px rgba(109,185,154,0.22);
+  --shadow-window: 0 18px 54px rgba(109,185,154,0.32), 0 4px 20px rgba(109,185,154,0.18);
+
+  --radius-sm: 14px;
+  --radius-md: 22px;
+  --radius-lg: 32px;
+
+  --font-mono: "Cubano", "Courier New", monospace;
+  --font-sans: "Cubano", "Helvetica Neue", sans-serif;
+
+  /* Timeline era tokens */
+  --timeline-military:      var(--mint-2);
+  --timeline-military-rgb:  var(--mint-2-rgb);
+  --timeline-tech:          var(--mint-1);
+  --timeline-tech-rgb:      var(--mint-1-rgb);
+  --timeline-education:     var(--mint-3);
+  --timeline-education-rgb: var(--mint-3-rgb);
+}
+
+/* Cloud sky background — replaces the dithered checkered pattern */
+[data-theme="mint"] body {
+  background-color: #BCDFD5;
+  background-image:
+    /* Cloud cluster — top left */
+    radial-gradient(ellipse 260px 145px at 11% 17%, rgba(255,255,255,0.94) 0%, rgba(255,255,255,0.32) 62%, transparent 100%),
+    radial-gradient(ellipse 185px  95px at 18% 10%, rgba(255,255,255,0.72) 0%, transparent 72%),
+    radial-gradient(ellipse 140px  74px at  6% 24%, rgba(255,255,255,0.52) 0%, transparent 66%),
+    /* Cloud cluster — top centre */
+    radial-gradient(ellipse 295px 155px at 54% 30%, rgba(255,255,255,0.9)  0%, rgba(255,255,255,0.28) 60%, transparent 100%),
+    radial-gradient(ellipse 205px 115px at 62% 22%, rgba(255,255,255,0.62) 0%, transparent 76%),
+    radial-gradient(ellipse 170px  85px at 46% 38%, rgba(255,255,255,0.44) 0%, transparent 68%),
+    /* Cloud cluster — top right */
+    radial-gradient(ellipse 325px 170px at 89% 19%, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.22) 56%, transparent 100%),
+    radial-gradient(ellipse 235px 125px at 82% 13%, rgba(255,255,255,0.58) 0%, transparent 71%),
+    radial-gradient(ellipse 165px  80px at 74% 27%, rgba(255,255,255,0.38) 0%, transparent 63%),
+    /* Wispy lower clouds */
+    radial-gradient(ellipse 215px 105px at 32% 70%, rgba(255,255,255,0.36) 0%, transparent 66%),
+    radial-gradient(ellipse 275px 135px at 76% 78%, rgba(255,255,255,0.32) 0%, transparent 60%),
+    radial-gradient(ellipse 190px  90px at 58% 82%, rgba(255,255,255,0.28) 0%, transparent 58%);
+  background-size: 100% 100%;
+  background-attachment: fixed;
+}
+
+/* Second cloud layer that slowly drifts via background-position */
+[data-theme="mint"] body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(ellipse 200px 110px at  8% 42%, rgba(255,255,255,0.58) 0%, transparent 76%),
+    radial-gradient(ellipse 260px 138px at 30% 57%, rgba(255,255,255,0.48) 0%, transparent 72%),
+    radial-gradient(ellipse 155px  85px at 58% 44%, rgba(255,255,255,0.52) 0%, transparent 70%),
+    radial-gradient(ellipse 290px 148px at 82% 52%, rgba(255,255,255,0.44) 0%, transparent 68%);
+  background-size: 300% 100%;
+  background-position: 0% 0%;
+  animation: mint-cloud-drift 90s ease-in-out infinite alternate;
+}
+
+@keyframes mint-cloud-drift {
+  from { background-position:   0% 0%; }
+  to   { background-position: 100% 0%; }
+}
+
+/* Bubble float — dialogs (no translateX needed, dialog centres via margin:auto) */
+@keyframes mint-float {
+  0%, 100% { transform: translateY(0px)  rotate( 0.00deg); }
+  30%       { transform: translateY(-7px) rotate( 0.18deg); }
+  65%       { transform: translateY(-4px) rotate(-0.12deg); }
+}
+
+/* Bubble float — nav must preserve translateX(-50%) or it loses its centering */
+@keyframes mint-float-nav {
+  0%, 100% { transform: translateX(-50%) translateY(0px); }
+  30%       { transform: translateX(-50%) translateY(-7px); }
+  65%       { transform: translateX(-50%) translateY(-4px); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-theme="mint"] dialog[open] {
+    animation: mint-float 6s ease-in-out infinite;
+  }
+
+  [data-theme="mint"] .floating-nav {
+    animation: mint-float-nav 8s ease-in-out infinite;
+    animation-delay: -3.5s;
+  }
+}
+
+/* Nav — frosted glass bubble pill */
+[data-theme="mint"] .floating-nav {
+  border-radius: var(--radius-lg);
+  border-color: rgba(109,185,154,0.55);
+  background: rgba(247,255,252,0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+[data-theme="mint"] .nav-btn {
+  border-radius: var(--radius-sm);
+  border-color: transparent;
+  font-family: "Cubano", var(--font-sans);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+
+[data-theme="mint"] .nav-btn:hover,
+[data-theme="mint"] .nav-btn[aria-expanded="true"] {
+  background: rgba(109,185,154,0.22);
+  color: #1E5A42;
+}
+
+/* Per-slot colour tints on nav buttons */
+[data-theme="mint"] .floating-nav > ul > li:nth-child(4n+1) .nav-btn:hover,
+[data-theme="mint"] .floating-nav > ul > li:nth-child(4n+1) .nav-btn[aria-expanded="true"] {
+  background: rgba(var(--mint-1-rgb), 0.2); color: #1E5A42;
+}
+[data-theme="mint"] .floating-nav > ul > li:nth-child(4n+2) .nav-btn:hover,
+[data-theme="mint"] .floating-nav > ul > li:nth-child(4n+2) .nav-btn[aria-expanded="true"] {
+  background: rgba(var(--mint-2-rgb), 0.24); color: #6E4A1A;
+}
+[data-theme="mint"] .floating-nav > ul > li:nth-child(4n+3) .nav-btn:hover,
+[data-theme="mint"] .floating-nav > ul > li:nth-child(4n+3) .nav-btn[aria-expanded="true"] {
+  background: rgba(var(--mint-3-rgb), 0.22); color: #1A5870;
+}
+[data-theme="mint"] .floating-nav > ul > li:nth-child(4n+4) .nav-btn:hover,
+[data-theme="mint"] .floating-nav > ul > li:nth-child(4n+4) .nav-btn[aria-expanded="true"] {
+  background: rgba(var(--mint-4-rgb), 0.22); color: #7A3E12;
+}
+
+[data-theme="mint"] .nav-locale select,
+[data-theme="mint"] .nav-theme select {
+  border-radius: var(--radius-sm);
+  border-color: rgba(109,185,154,0.45);
+  font-family: "Cubano", var(--font-sans);
+  font-weight: 400;
+}
+
+[data-theme="mint"] .nav-locale select:hover,
+[data-theme="mint"] .nav-theme select:hover {
+  background: rgba(var(--mint-1-rgb), 0.16);
+  color: var(--color-text);
+}
+
+/* Dialog window — large bubble */
+[data-theme="mint"] .mac-os-window {
+  border-radius: var(--radius-lg);
+  border-color: rgba(94,168,138,0.45);
+  overflow: hidden;
+  background: rgba(247,255,252,0.94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+[data-theme="mint"] .mac-os-window::backdrop {
+  background: rgba(30,48,43,0.28);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* Title bar — sage strip with 4-colour accent bottom line */
+[data-theme="mint"] .window-titlebar {
+  background-color: var(--color-window-bar);
+  background-image: linear-gradient(to right,
+    rgba(var(--mint-1-rgb), 0.7)  0%  25%,
+    rgba(var(--mint-2-rgb), 0.7) 25%  50%,
+    rgba(var(--mint-3-rgb), 0.7) 50%  75%,
+    rgba(var(--mint-4-rgb), 0.7) 75% 100%
+  );
+  background-size: 100% 4px;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  border-bottom: 1px solid rgba(94,168,138,0.3);
+  border-radius: 0;
+}
+
+[data-theme="mint"] .window-titlebar h2 {
+  border-radius: var(--radius-sm);
+  border-color: rgba(94,168,138,0.3);
+  background: rgba(255,255,255,0.65);
+  font-family: "Cubano", var(--font-sans);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+
+/* Close button — peach bubble */
+[data-theme="mint"] .close-btn {
+  border-radius: 50%;
+  background: rgba(232,168,124,0.18);
+  border-color: rgba(232,168,124,0.5);
+  box-shadow: none;
+}
+
+[data-theme="mint"] .close-btn::before,
+[data-theme="mint"] .close-btn::after {
+  background: var(--color-text);
+}
+
+[data-theme="mint"] .close-btn:hover {
+  background: var(--mint-4);
+}
+
+[data-theme="mint"] .close-btn:hover::before,
+[data-theme="mint"] .close-btn:hover::after {
+  background: white;
+}
+
+/* Section headings — coloured left-border, cycling 4 accents */
+[data-theme="mint"] .window-content h3 {
+  border-bottom: none;
+  border-left: 4px solid var(--mint-1);
+  padding-left: var(--sp-sm);
+  padding-bottom: 0;
+  font-family: "Cubano", var(--font-sans);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+}
+
+[data-theme="mint"] section:nth-child(4n+1) h3,
+[data-theme="mint"] article:nth-child(4n+1) h3 { border-left-color: var(--mint-1); }
+[data-theme="mint"] section:nth-child(4n+2) h3,
+[data-theme="mint"] article:nth-child(4n+2) h3 { border-left-color: var(--mint-2); }
+[data-theme="mint"] section:nth-child(4n+3) h3,
+[data-theme="mint"] article:nth-child(4n+3) h3 { border-left-color: var(--mint-3); }
+[data-theme="mint"] section:nth-child(4n+4) h3,
+[data-theme="mint"] article:nth-child(4n+4) h3 { border-left-color: var(--mint-4); }
+
+/* Feature list markers */
+[data-theme="mint"] .feature-list--pro li::before     { content: '✓'; color: var(--mint-1); }
+[data-theme="mint"] .feature-list--con li::before     { content: '!'; color: var(--mint-4); }
+[data-theme="mint"] .feature-list--neutral li::before { content: '–'; color: var(--mint-2); opacity: 1; }
+
+/* Profile photo — soft rounded bubble */
+[data-theme="mint"] .profile-photo {
+  border-radius: var(--radius-md);
+  border-color: var(--mint-1);
+  box-shadow: 0 4px 18px rgba(109,185,154,0.32);
+}
+
+/* Links */
+[data-theme="mint"] .window-content a {
+  color: #1E5A42;
+}
+
+[data-theme="mint"] .window-content a:hover {
+  background: rgba(var(--mint-1-rgb), 0.16);
+  color: #1E5A42;
+}
+
+/* Skill tags — pill bubbles cycling through 4 accents */
+[data-theme="mint"] .skill-tag {
+  border-radius: var(--radius-md);
+  border-color: transparent;
+  font-family: "Cubano", var(--font-sans);
+  font-weight: 400;
+  letter-spacing: 0.03em;
+}
+
+[data-theme="mint"] .skills-list > li:nth-child(4n+1) .skill-tag {
+  background: rgba(var(--mint-1-rgb), 0.22); color: #1E5A42;
+}
+[data-theme="mint"] .skills-list > li:nth-child(4n+2) .skill-tag {
+  background: rgba(var(--mint-2-rgb), 0.28); color: #6E4A1A;
+}
+[data-theme="mint"] .skills-list > li:nth-child(4n+3) .skill-tag {
+  background: rgba(var(--mint-3-rgb), 0.24); color: #1A5870;
+}
+[data-theme="mint"] .skills-list > li:nth-child(4n) .skill-tag {
+  background: rgba(var(--mint-4-rgb), 0.24); color: #7A3E12;
+}
+
+/* Repo cards — rounded bubbles */
+[data-theme="mint"] .repo-card {
+  border-radius: var(--radius-md);
+  border-color: rgba(94,168,138,0.3);
+  background: rgba(255,255,255,0.65);
+}
+
+[data-theme="mint"] .repo-card h4 a { color: #1E5A42; }
+
+[data-theme="mint"] .repo-card h4 a:hover {
+  background: rgba(var(--mint-1-rgb), 0.16);
+  color: #1E5A42;
+}
+
+[data-theme="mint"] .repo-lang  { color: #1E5A42; }
+[data-theme="mint"] .repo-stars { color: #6E4A1A; opacity: 1; }
+
+/* Contact form */
+[data-theme="mint"] .form-field input,
+[data-theme="mint"] .form-field select,
+[data-theme="mint"] .form-field textarea {
+  border-radius: var(--radius-sm);
+  border-color: rgba(94,168,138,0.4);
+  background: rgba(255,255,255,0.75);
+  font-family: "Cubano", var(--font-sans);
+}
+
+[data-theme="mint"] .submit-btn {
+  border-radius: var(--radius-md);
+  background: var(--mint-1);
+  border-color: transparent;
+  color: white;
+  font-family: "Cubano", var(--font-sans);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+
+[data-theme="mint"] .submit-btn:hover:not(:disabled) {
+  background: #59A888;
+  color: white;
+}
+
+[data-theme="mint"] .contact-status--loading { border-left-color: var(--mint-3); }
+[data-theme="mint"] .contact-status--success { border-left-color: var(--mint-1); }
+[data-theme="mint"] .contact-status--error   { border-left-color: var(--mint-4); }
+
+/* Timeline */
+[data-theme="mint"] .timeline-legend-swatch {
+  border-radius: var(--radius-sm);
+}
+
+[data-theme="mint"] .timeline-legend,
+[data-theme="mint"] .timeline-year,
+[data-theme="mint"] .timeline-desc {
+  font-family: "Cubano", var(--font-sans);
+  font-weight: 400;
 }

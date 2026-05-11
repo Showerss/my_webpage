@@ -594,6 +594,22 @@ function initContactForm() {
   });
 }
 
+// ─── Ripple ───────────────────────────────────────────────────────────────────
+
+function initRipple() {
+  document.addEventListener('click', e => {
+    const host = e.target.closest('.nav-btn, .submit-btn');
+    if (!host) return;
+    const rect = host.getBoundingClientRect();
+    const ripple = document.createElement('span');
+    ripple.className = 'ripple';
+    ripple.style.left = `${e.clientX - rect.left}px`;
+    ripple.style.top  = `${e.clientY - rect.top}px`;
+    host.append(ripple);
+    setTimeout(() => ripple.remove(), 600);
+  });
+}
+
 // ─── Boot ─────────────────────────────────────────────────────────────────────
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -603,4 +619,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   loadGitHubRepos();
   initContactForm();
+  initRipple();
 });

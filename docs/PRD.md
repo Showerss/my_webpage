@@ -76,3 +76,16 @@ Written in the voice of a literal product user manual — personality-forward, r
 - Theme switcher UI (retro fantasy theme)
 - The ML video game project (repo not public yet)
 - Any backend or server-side rendering
+
+## 8. Security & Bot Posture
+
+**Anti-scraping is explicitly out of scope — by design, not by oversight.**
+
+Rationale:
+
+- **No server to protect.** The site is 100% static files. There is no origin under load; hosting bandwidth cost is the provider's problem (GitHub Pages / Netlify absorb it).
+- **Crawlers are an asset, not a threat.** Googlebot, LinkedIn, and recruiter ATS scrapers indexing this site is the desired outcome. Anti-bot measures would actively hurt discoverability.
+- **No sensitive data exposed.** The owner's email address is never present in the HTML source (the contact form uses a backend relay or `mailto:` assembled in JS if added). There is no auth, no PII, no API key in the front-end code.
+- **GitHub API calls are unauthenticated and rate-limited by GitHub**, not by this site. If a bot hammers the page, only GitHub's rate limit is hit — and the error-handling spec already handles that gracefully.
+
+**Revisit this decision only if:** a backend is added (contact form relay, analytics endpoint, etc.), at which point standard rate-limiting at the server/edge layer is the right tool — not HTML obfuscation.
