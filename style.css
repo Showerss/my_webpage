@@ -1537,13 +1537,13 @@ dialog:not([open]) {
     radial-gradient(ellipse 155px  85px at 58% 44%, rgba(255,255,255,0.52) 0%, transparent 70%),
     radial-gradient(ellipse 290px 148px at 82% 52%, rgba(255,255,255,0.44) 0%, transparent 68%);
   background-size: 300% 100%;
-  background-position: 0% 0%;
+  background-position: 0 0;
   animation: mint-cloud-drift 90s ease-in-out infinite alternate;
 }
 
 @keyframes mint-cloud-drift {
-  from { background-position:   0% 0%; }
-  to   { background-position: 100% 0%; }
+  from { background-position:   0 0; }
+  to   { background-position: 100% 0; }
 }
 
 /* Bubble float — dialogs (no translateX needed, dialog centres via margin:auto) */
