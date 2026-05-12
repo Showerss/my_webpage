@@ -3,6 +3,7 @@
     "userManual": "Manuale Utente",
     "timeline": "Cronologia Lavorativa",
     "projects": "Progetti e Competenze",
+    "resume": "Curriculum",
     "contact": "Contatto",
     "langSelect": "Seleziona lingua"
   },
@@ -61,6 +62,14 @@
     "loading": "Caricamento repository…",
     "errorMsg": "Impossibile caricare i repository.",
     "errorLink": "Vedi su GitHub →"
+  },
+  "resume": {
+    "title": "Curriculum",
+    "print": "Stampa / Salva come PDF",
+    "educationHeading": "Istruzione",
+    "experienceHeading": "Esperienza Professionale",
+    "skillsHeading": "Competenze Tecniche",
+    "interestsHeading": "Interessi di Ricerca"
   },
   "contact": {
     "title": "Contatto",

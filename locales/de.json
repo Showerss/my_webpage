@@ -3,6 +3,7 @@
     "userManual": "Benutzerhandbuch",
     "timeline": "Berufsweg",
     "projects": "Projekte & Fähigkeiten",
+    "resume": "Lebenslauf",
     "contact": "Kontakt",
     "langSelect": "Sprache auswählen"
   },
@@ -61,6 +62,14 @@
     "loading": "Repositories werden geladen…",
     "errorMsg": "Repositories konnten nicht geladen werden.",
     "errorLink": "Auf GitHub ansehen →"
+  },
+  "resume": {
+    "title": "Lebenslauf",
+    "print": "Drucken / Als PDF speichern",
+    "educationHeading": "Ausbildung",
+    "experienceHeading": "Berufserfahrung",
+    "skillsHeading": "Technische Fähigkeiten",
+    "interestsHeading": "Forschungsinteressen"
   },
   "contact": {
     "title": "Kontakt",

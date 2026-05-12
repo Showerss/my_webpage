@@ -3,6 +3,7 @@
     "userManual": "Manuel Utilisateur",
     "timeline": "Parcours Professionnel",
     "projects": "Projets & Compétences",
+    "resume": "CV",
     "contact": "Contact",
     "langSelect": "Sélectionner la langue"
   },
@@ -61,6 +62,14 @@
     "loading": "Chargement des dépôts…",
     "errorMsg": "Impossible de charger les dépôts.",
     "errorLink": "Voir sur GitHub →"
+  },
+  "resume": {
+    "title": "CV",
+    "print": "Imprimer / Enregistrer en PDF",
+    "educationHeading": "Formation",
+    "experienceHeading": "Expérience Professionnelle",
+    "skillsHeading": "Compétences Techniques",
+    "interestsHeading": "Intérêts de Recherche"
   },
   "contact": {
     "title": "Contact",

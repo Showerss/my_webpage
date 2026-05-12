@@ -3,6 +3,7 @@
     "userManual": "User Manual",
     "timeline": "Work History",
     "projects": "Projects & Skills",
+    "resume": "Resume",
     "contact": "Contact",
     "langSelect": "Select language"
   },
@@ -61,6 +62,14 @@
     "loading": "Loading repositories…",
     "errorMsg": "Could not load repositories.",
     "errorLink": "View on GitHub →"
+  },
+  "resume": {
+    "title": "Resume",
+    "print": "Print / Save as PDF",
+    "educationHeading": "Education",
+    "experienceHeading": "Experience",
+    "skillsHeading": "Technical Skills",
+    "interestsHeading": "Research Interests"
   },
   "contact": {
     "title": "Contact",

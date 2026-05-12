@@ -155,6 +155,103 @@
       </section>
     </dialog>
 
+    <!-- Resume Dialog -->
+    <dialog id="resume-dialog" class="mac-os-window mac-os-window--wide" aria-labelledby="resume-title">
+      <header class="window-titlebar">
+        <button class="close-btn" aria-label="Close Resume" data-close-dialog></button>
+        <h2 id="resume-title" data-i18n="resume.title">Resume</h2>
+        <span class="titlebar-spacer" aria-hidden="true"></span>
+      </header>
+      <section class="window-content window-content--resume" aria-labelledby="resume-title">
+        <div class="resume-toolbar">
+          <button class="resume-print-btn" type="button" data-i18n="resume.print">Print / Save as PDF</button>
+        </div>
+        <article class="resume-doc">
+          <header class="resume-header">
+            <p class="resume-name">Phillip M. Banky</p>
+            <p class="resume-subtitle">Software Engineer · He/Him</p>
+            <address class="resume-contact">
+              <a href="https://github.com/Showerss" target="_blank" rel="noopener noreferrer">github.com/Showerss</a>
+              <!-- email injected by JS to keep it out of static HTML -->
+              <a class="resume-email" href="#" hidden></a>
+            </address>
+          </header>
+
+          <section class="resume-section">
+            <h3 data-i18n="resume.educationHeading">Education</h3>
+            <div class="resume-entry">
+              <div class="resume-entry-head">
+                <strong>Northeastern University</strong>
+                <time datetime="2026">2026 – Present</time>
+              </div>
+              <p class="resume-entry-org">M.S. Computer Science</p>
+            </div>
+            <div class="resume-entry">
+              <div class="resume-entry-head">
+                <strong>University of San Diego</strong>
+                <time datetime="2023/2026">2023 – 2026</time>
+              </div>
+              <p class="resume-entry-org">B.S. Computer Science</p>
+            </div>
+          </section>
+
+          <section class="resume-section">
+            <h3 data-i18n="resume.experienceHeading">Experience</h3>
+            <div class="resume-entry">
+              <div class="resume-entry-head">
+                <!-- TODO: replace [Employer] with your company name -->
+                <strong>Integration Engineer — [Noblis MSD]</strong>
+                <time datetime="2023">2023</time>
+              </div>
+              <ul class="resume-bullets">
+                <li>Promoted from Mid-Level IT / Network Admin within 3 years</li>
+                <li>Designed and implemented integrations across enterprise infrastructure</li>
+              </ul>
+            </div>
+            <div class="resume-entry">
+              <div class="resume-entry-head">
+                <strong>Mid-Level IT / Network Administrator — [Noblis MSD]</strong>
+                <time datetime="2020/2023">2020 – 2023</time>
+              </div>
+              <ul class="resume-bullets">
+                <li>Managed network infrastructure and IT operations for enterprise environment</li>
+                <li>Administered systems, resolved incidents, and maintained uptime across on-prem networks</li>
+              </ul>
+            </div>
+            <div class="resume-entry">
+              <div class="resume-entry-head">
+                <strong>IT2 — U.S. Navy</strong>
+                <time datetime="2013/2020">2013 – 2020</time>
+              </div>
+              <ul class="resume-bullets">
+                <li>Managed communications and network infrastructure in operational environments over 7 years</li>
+                <li>Honorable Discharge, 2020</li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="resume-section">
+            <h3 data-i18n="resume.skillsHeading">Technical Skills</h3>
+            <dl class="resume-skills-grid">
+              <div class="resume-skills-row">
+                <dt>Languages</dt>
+                <dd>C · C++ · Java · Python · HTML5 · CSS3 · JavaScript</dd>
+              </div>
+              <div class="resume-skills-row">
+                <dt>Specialties</dt>
+                <dd>Embedded Systems · Memory Management · Networking · Software Architecture</dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="resume-section">
+            <h3 data-i18n="resume.interestsHeading">Research Interests</h3>
+            <p>Robotics · Assistive technology · Energy efficiency · Ocean systems · Medical technology</p>
+          </section>
+        </article>
+      </section>
+    </dialog>
+
     <!-- Contact Dialog -->
     <dialog id="contact-dialog" class="mac-os-window" aria-labelledby="contact-title">
       <header class="window-titlebar">
@@ -237,7 +334,7 @@
             <li class="timeline-event" data-phase="military">
               <time class="timeline-year" datetime="2013">2013</time>
               <div class="timeline-dot" aria-hidden="true"></div>
-              <p class="timeline-desc" data-i18n="timeline.enlisted">Enlisted — IT Specialist</p>
+              <p class="timeline-desc" data-i18n="timeline.enlisted">Enlisted — IT</p>
             </li>
             <li class="timeline-event" data-phase="military">
               <time class="timeline-year" datetime="2020">2020</time>
@@ -262,12 +359,12 @@
             <li class="timeline-event" data-phase="education">
               <time class="timeline-year" datetime="2026">2026</time>
               <div class="timeline-dot" aria-hidden="true"></div>
-              <p class="timeline-desc" data-i18n="timeline.graduated">Bachelor's, Computer Science</p>
+              <p class="timeline-desc" data-i18n="timeline.graduated">Bachelors, Computer Science</p>
             </li>
             <li class="timeline-event" data-phase="education">
               <time class="timeline-year" datetime="2026">2026</time>
               <div class="timeline-dot" aria-hidden="true"></div>
-              <p class="timeline-desc" data-i18n="timeline.northeastern">M.S. Studies, Northeastern University</p>
+              <p class="timeline-desc" data-i18n="timeline.northeastern">M.S. Computer Science, Northeastern University</p>
             </li>
           </ol>
         </div>
@@ -288,19 +385,14 @@
           <ul class="skills-list" role="list" aria-label="Technical skills">
             <li><span class="skill-tag">HTML5</span></li>
             <li><span class="skill-tag">CSS3</span></li>
-            <li><span class="skill-tag">Vanilla JS</span></li>
-            <li><span class="skill-tag">Web Components</span></li>
-            <li><span class="skill-tag">DOM APIs</span></li>
             <li><span class="skill-tag">C</span></li>
             <li><span class="skill-tag">C++</span></li>
             <li><span class="skill-tag">C#</span></li>
             <li><span class="skill-tag">Java</span></li>
             <li><span class="skill-tag">Python</span></li>
-            <li><span class="skill-tag">Rust</span></li>
             <li><span class="skill-tag">Embedded Systems</span></li>
             <li><span class="skill-tag">Memory Management</span></li>
             <li><span class="skill-tag">Networking</span></li>
-            <li><span class="skill-tag">Accessibility (a11y)</span></li>
           </ul>
         </section>
 
