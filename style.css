@@ -2059,6 +2059,10 @@ dialog:not([open]) {
    ============================================================ */
 
 /* Window content override: toolbar is fixed, document scrolls */
+#resume-dialog {
+  height: var(--dialog-max-height);
+}
+
 .window-content--resume {
   padding: 0;
   overflow: hidden;
@@ -2100,136 +2104,12 @@ dialog:not([open]) {
   outline-offset: 2px;
 }
 
-/* Scrollable resume document */
-.resume-doc {
+.resume-pdf-embed {
   flex: 1;
-  overflow-y: auto;
-  padding: var(--sp-lg);
-}
-
-/* Header block: name, subtitle, contact links */
-.resume-header {
-  margin-bottom: var(--sp-lg);
-  padding-bottom: var(--sp-lg);
-  border-bottom: 2px solid var(--color-border);
-}
-
-.resume-name {
-  font-size: 1.35rem;
-  font-weight: bold;
-  letter-spacing: 0.03em;
-  margin: 0 0 var(--sp-xs);
-}
-
-.resume-subtitle {
-  font-size: 0.85rem;
-  opacity: 0.65;
-  margin: 0 0 var(--sp-sm);
-}
-
-.resume-contact {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--sp-sm);
-  font-style: normal;
-  font-size: 0.85rem;
-}
-
-/* Separator dot between contact items */
-.resume-contact a + a::before {
-  content: '·';
-  margin-right: var(--sp-sm);
-  opacity: 0.4;
-}
-
-/* Sections inherit .window-content h3 styles already defined */
-.resume-section {
-  margin-bottom: var(--sp-lg);
-}
-
-.resume-section:last-child {
-  margin-bottom: 0;
-}
-
-/* Entry: one job or education record */
-.resume-entry {
-  margin-bottom: var(--sp-md);
-}
-
-.resume-entry:last-child {
-  margin-bottom: 0;
-}
-
-.resume-entry-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: var(--sp-sm);
-}
-
-.resume-entry-head strong {
-  font-size: 0.9rem;
-}
-
-.resume-entry-head time {
-  font-size: 0.78rem;
-  opacity: 0.6;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-.resume-entry-org {
-  font-size: 0.82rem;
-  opacity: 0.65;
-  margin: var(--sp-xs) 0 0 !important;
-}
-
-.resume-bullets {
-  list-style: none;
-  padding: 0;
-  margin: var(--sp-xs) 0 0;
-}
-
-.resume-bullets li {
-  position: relative;
-  padding-left: 1rem;
-  font-size: 0.88rem;
-  line-height: 1.5;
-}
-
-.resume-bullets li::before {
-  content: '—';
-  position: absolute;
-  left: 0;
-  opacity: 0.4;
-}
-
-/* Two-column skills table */
-.resume-skills-grid {
-  display: grid;
-  grid-template-columns: max-content 1fr;
-  gap: var(--sp-xs) var(--sp-lg);
-  margin: 0;
-}
-
-.resume-skills-row {
-  display: contents;
-}
-
-.resume-skills-row dt {
-  font-size: 0.72rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  opacity: 0.55;
-  align-self: baseline;
-  padding-top: 0.1em;
-}
-
-.resume-skills-row dd {
-  font-size: 0.88rem;
-  margin: 0;
-  line-height: 1.5;
+  width: 100%;
+  min-height: 0;
+  border: none;
+  display: block;
 }
 
 /* ── Theme overrides ── */
@@ -2321,19 +2201,5 @@ dialog:not([open]) {
     max-height: none;
     display: block;
     padding: 0;
-  }
-
-  .resume-doc {
-    overflow: visible;
-    padding: 0;
-  }
-
-  .resume-header {
-    border-bottom-color: #000;
-  }
-
-  .resume-section h3 {
-    border-bottom-color: #000;
-    color: #000;
   }
 }

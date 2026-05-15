@@ -595,22 +595,6 @@ function initContactForm() {
   });
 }
 
-// ─── Resume ───────────────────────────────────────────────────────────────────
-
-function initResume() {
-  document.querySelector('.resume-print-btn')
-    ?.addEventListener('click', () => window.print());
-
-  // Assemble email in JS so it never appears in static HTML (PRD §8).
-  const emailEl = document.querySelector('.resume-email');
-  if (emailEl) {
-    const addr = 'phillip.banky' + '@' + 'gmail.com';
-    emailEl.href        = 'mailto:' + addr;
-    emailEl.textContent = addr;
-    emailEl.removeAttribute('hidden');
-  }
-}
-
 // ─── Ripple ───────────────────────────────────────────────────────────────────
 
 function initRipple() {
@@ -636,6 +620,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   loadGitHubRepos();
   initContactForm();
-  initResume();
   initRipple();
 });
