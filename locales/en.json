@@ -57,7 +57,6 @@
   },
   "projects": {
     "title": "Projects & Skills",
-    "skillsHeading": "Technical Skills",
     "reposHeading": "GitHub Projects",
     "loading": "Loading repositories…",
     "errorMsg": "Could not load repositories.",
@@ -65,11 +64,7 @@
   },
   "resume": {
     "title": "Resume",
-    "print": "Print / Save as PDF",
-    "educationHeading": "Education",
-    "experienceHeading": "Experience",
-    "skillsHeading": "Technical Skills",
-    "interestsHeading": "Research Interests"
+    "download": "Download PDF"
   },
   "contact": {
     "title": "Contact",

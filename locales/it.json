@@ -57,7 +57,6 @@
   },
   "projects": {
     "title": "Progetti e Competenze",
-    "skillsHeading": "Competenze Tecniche",
     "reposHeading": "Progetti GitHub",
     "loading": "Caricamento repository…",
     "errorMsg": "Impossibile caricare i repository.",
@@ -65,11 +64,7 @@
   },
   "resume": {
     "title": "Curriculum",
-    "print": "Stampa / Salva come PDF",
-    "educationHeading": "Istruzione",
-    "experienceHeading": "Esperienza Professionale",
-    "skillsHeading": "Competenze Tecniche",
-    "interestsHeading": "Interessi di Ricerca"
+    "download": "Download PDF"
   },
   "contact": {
     "title": "Contatto",

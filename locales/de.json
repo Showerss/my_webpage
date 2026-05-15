@@ -57,7 +57,6 @@
   },
   "projects": {
     "title": "Projekte & Fähigkeiten",
-    "skillsHeading": "Technische Fähigkeiten",
     "reposHeading": "GitHub-Projekte",
     "loading": "Repositories werden geladen…",
     "errorMsg": "Repositories konnten nicht geladen werden.",
@@ -65,11 +64,7 @@
   },
   "resume": {
     "title": "Lebenslauf",
-    "print": "Drucken / Als PDF speichern",
-    "educationHeading": "Ausbildung",
-    "experienceHeading": "Berufserfahrung",
-    "skillsHeading": "Technische Fähigkeiten",
-    "interestsHeading": "Forschungsinteressen"
+    "download": "Download PDF"
   },
   "contact": {
     "title": "Kontakt",
