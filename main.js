@@ -1,3 +1,5 @@
+import { triggerTreato } from './treato.js';
+
 /**
  * Section config — single source of truth for nav + dialogs.
  * To add a new section: append an entry here and add the
@@ -595,6 +597,20 @@ function initContactForm() {
   });
 }
 
+// ─── Treato Time ──────────────────────────────────────────────────────────────
+
+function buildTreatoButton() {
+  const list = document.getElementById('nav-list');
+  if (!list) return;
+  const li  = document.createElement('li');
+  const btn = document.createElement('button');
+  btn.className   = 'nav-btn';
+  btn.textContent = 'Treato Time';
+  btn.addEventListener('click', triggerTreato);
+  li.append(btn);
+  list.append(li);
+}
+
 // ─── Ripple ───────────────────────────────────────────────────────────────────
 
 function initRipple() {
@@ -615,6 +631,7 @@ function initRipple() {
 
 document.addEventListener('DOMContentLoaded', () => {
   buildNav();
+  buildTreatoButton();
   initDialogs();
   initLocale();
   initTheme();
