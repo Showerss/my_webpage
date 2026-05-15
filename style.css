@@ -396,6 +396,7 @@ body {
   font-family: var(--font-mono);
   font-size: 0.9rem;
   font-weight: bold;
+  color: var(--color-text);
   cursor: pointer;
   white-space: nowrap;
   position: relative;
@@ -1838,30 +1839,30 @@ dialog:not([open]) {
 }
 
 /* ============================================================
-   TUI THEME  (iTerm2-dark background · Dracula terminal colours ·
-   classic Apple rainbow stripe accent)
+   TUI THEME  (Dracula palette · #21222c page · #282a36 windows ·
+   purple→pink gradient accents)
    ============================================================ */
 
 [data-theme="tui"] {
   /* Dracula terminal palette — 4-colour cycling accents */
-  --tui-1: #50FA7B;   /* Dracula green  — headings / success */
-  --tui-2: #8BE9FD;   /* Dracula cyan   — links / info */
-  --tui-3: #F1FA8C;   /* Dracula yellow — stars / warnings */
-  --tui-4: #FF5555;   /* Dracula red    — danger / close */
+  --tui-1: #bd93f9;   /* Dracula purple — headings / primary */
+  --tui-2: #8be9fd;   /* Dracula cyan   — links / info */
+  --tui-3: #50fa7b;   /* Dracula green  — success / stars */
+  --tui-4: #ff5555;   /* Dracula red    — danger / close */
 
-  --tui-1-rgb: 80, 250, 123;
+  --tui-1-rgb: 189, 147, 249;
   --tui-2-rgb: 139, 233, 253;
-  --tui-3-rgb: 241, 250, 140;
+  --tui-3-rgb: 80, 250, 123;
   --tui-4-rgb: 255, 85, 85;
 
-  /* Surfaces: page is near-black; windows are Dracula bg (#282a36) */
-  --color-bg:         #1c1c1c;
+  /* Surfaces: page is Dracula dark variant; windows are Dracula bg */
+  --color-bg:         #21222c;
   --color-text:       #f8f8f2;
   --color-border:     #44475a;
   --color-window-bg:  #282a36;
   --color-window-bar: #191a21;
   --color-primary:    var(--tui-1);
-  --color-watermark:  #242424;
+  --color-watermark:  #21222c;
 
   --shadow-nav:    4px 4px 0 rgba(98,114,164,0.70), 0 4px 24px rgba(0,0,0,0.60);
   --shadow-window: 6px 6px 0 rgba(98,114,164,0.55), 0 8px 32px rgba(0,0,0,0.55);
@@ -1878,9 +1879,9 @@ dialog:not([open]) {
   --timeline-education-rgb: var(--tui-2-rgb);
 }
 
-/* Near-black page background with faint grid */
+/* Dracula page background with faint grid */
 [data-theme="tui"] body {
-  background-color: #1c1c1c;
+  background-color: #21222c;
   background-image:
     linear-gradient(rgba(68,71,90,0.15) 1px, transparent 1px),
     linear-gradient(90deg, rgba(68,71,90,0.15) 1px, transparent 1px);
@@ -1890,26 +1891,18 @@ dialog:not([open]) {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Apple 6-colour rainbow stripe shared between nav + titlebars */
-/* (defined as a custom property so we only write the gradient once) */
+/* Dracula purple→pink gradient shared between nav + titlebars */
 [data-theme="tui"] {
-  --apple-rainbow: linear-gradient(to right,
-    #61BB46  0%   16.67%,
-    #FBB818 16.67% 33.33%,
-    #F6821F 33.33% 50.00%,
-    #E03927 50.00% 66.67%,
-    #963D97 66.67% 83.33%,
-    #009FDA 83.33% 100%
-  );
+  --dracula-gradient: linear-gradient(to right, #bd93f9, #ff79c6, #8be9fd);
 }
 
-/* Nav — rainbow stripe along top edge */
+/* Nav — Dracula gradient stripe along top edge */
 [data-theme="tui"] .floating-nav::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 3px;
-  background: var(--apple-rainbow);
+  background: var(--dracula-gradient);
   pointer-events: none;
 }
 
@@ -1927,10 +1920,10 @@ dialog:not([open]) {
   color: #1c1c1c;
 }
 
-/* Titlebar — flat dark + rainbow stripe along bottom */
+/* Titlebar — flat dark + Dracula gradient stripe along bottom */
 [data-theme="tui"] .window-titlebar {
   background-color: var(--color-window-bar);
-  background-image: var(--apple-rainbow);
+  background-image: var(--dracula-gradient);
   background-size: 100% 3px;
   background-position: bottom;
   background-repeat: no-repeat;
