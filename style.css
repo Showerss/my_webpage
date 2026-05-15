@@ -1877,6 +1877,9 @@ dialog:not([open]) {
   --timeline-tech-rgb:      var(--tui-1-rgb);
   --timeline-education:     var(--tui-2);
   --timeline-education-rgb: var(--tui-2-rgb);
+
+  --font-mono: "Roboto Mono", monospace;
+  --font-sans: "Roboto Mono", monospace;
 }
 
 /* Dracula page background with faint grid */
