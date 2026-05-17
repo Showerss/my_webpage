@@ -74,7 +74,7 @@
       </header>
       <!-- aria-labelledby reuses the dialog's <h2> id so this <section> has an accessible name
            in the landmark tree without needing a separate visible heading. -->
-      <section class="window-content" aria-labelledby="user-manual-title">
+      <div class="window-content">
 
         <figure class="profile-figure">
           <!-- Drop your photo at assets/img/profile.jpg -->
@@ -157,7 +157,7 @@
             energy efficiency, assistive robotics, sustainable living, and medical tech.</p>
         </section>
 
-      </section>
+      </div>
     </dialog>
 
     <!-- Resume Dialog -->
@@ -167,14 +167,14 @@
         <h2 id="resume-title" data-i18n="resume.title">Resume</h2>
         <span class="titlebar-spacer" aria-hidden="true"></span>
       </header>
-      <section class="window-content window-content--resume" aria-labelledby="resume-title">
+      <div class="window-content window-content--resume">
         <div class="resume-toolbar">
           <a class="resume-print-btn" href="assets/Phillip%20Banky%20Resume.pdf" download="Phillip Banky Resume.pdf" data-i18n="resume.download">Download PDF</a>
         </div>
         <object class="resume-pdf-embed" data="assets/Phillip%20Banky%20Resume.pdf" type="application/pdf" aria-label="Phillip M. Banky resume PDF">
           <p>Your browser cannot display this PDF. <a href="assets/Phillip%20Banky%20Resume.pdf" download="Phillip Banky Resume.pdf">Download the resume instead</a>.</p>
         </object>
-      </section>
+      </div>
     </dialog>
 
     <!-- Contact Dialog -->
@@ -184,7 +184,7 @@
         <h2 id="contact-title" data-i18n="contact.title">Contact</h2>
         <span class="titlebar-spacer" aria-hidden="true"></span>
       </header>
-      <section class="window-content" aria-labelledby="contact-title">
+      <div class="window-content">
         <form id="contact-form" class="contact-form" novalidate>
           <div class="form-field">
             <label for="contact-name" data-i18n="contact.labelName">Name</label>
@@ -214,7 +214,7 @@
           </div>
         </form>
         <div id="contact-status" class="contact-status" aria-live="polite" hidden></div>
-      </section>
+      </div>
     </dialog>
 
     <!-- Work History Timeline Dialog -->
@@ -224,8 +224,8 @@
         <h2 id="timeline-title" data-i18n="timeline.title">Work History</h2>
         <span class="titlebar-spacer" aria-hidden="true"></span>
       </header>
-      <section class="window-content window-content--timeline" aria-labelledby="timeline-title">
-        <div class="timeline-legend" aria-label="Timeline legend">
+      <div class="window-content window-content--timeline">
+        <div class="timeline-legend" role="group" aria-label="Timeline legend">
           <span class="timeline-legend-item" data-phase="military">
             <span class="timeline-legend-swatch" aria-hidden="true"></span>
             <span data-i18n="timeline.legendMilitary">Military Service</span>
@@ -293,7 +293,7 @@
             </li>
           </ol>
         </div>
-      </section>
+      </div>
     </dialog>
 
     <!-- Projects & Skills Dialog -->
@@ -303,7 +303,7 @@
         <h2 id="projects-title" data-i18n="projects.title">Projects &amp; Skills</h2>
         <span class="titlebar-spacer" aria-hidden="true"></span>
       </header>
-      <section class="window-content" aria-labelledby="projects-title">
+      <div class="window-content">
 
         <section>
           <h3 data-i18n="projects.skillsHeading">Technical Skills</h3>
@@ -335,7 +335,7 @@
           </div>
         </section>
 
-      </section>
+      </div>
     </dialog>
   </main>
   <footer class="page-footer">
