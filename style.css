@@ -463,6 +463,7 @@ theme-picker {
 }
 
 .theme-swatch {
+  --swatch-color: transparent;
   width: 0.9rem;
   height: 0.9rem;
   border-radius: 50%;
