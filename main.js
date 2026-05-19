@@ -15,6 +15,9 @@ const SECTIONS = [
   { dialogId: 'contact-dialog',     labelKey: 'nav.contact',    defaultLabel: 'Contact' },
 ];
 
+const dialogState = new WeakMap();
+let currentStrings = {};
+
 const GITHUB_USER = 'Showerss';
 const GITHUB_API  = `https://api.github.com/users/${GITHUB_USER}/repos?sort=updated&per_page=6&type=public`;
 
@@ -50,17 +53,35 @@ function buildNav() {
 // ─── Dialog management ────────────────────────────────────────────────────────
 
 function openDialog(id) {
-  // Enforce single-dialog-at-a-time: close any currently open dialog first.
-  document.querySelectorAll('dialog[open]').forEach(closeDialog);
+  document.querySelectorAll('dialog[open]').forEach(d => d.close());
   const dialog = document.getElementById(id);
   if (!dialog) return;
+
+  const triggerBtn = document.querySelector(`.nav-btn[data-dialog="${id}"]`);
+  const focusable  = Array.from(dialog.querySelectorAll(
+    'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+  ));
+  const first = focusable[0];
+  const last  = focusable[focusable.length - 1];
+
+  function trapKeydown(e) {
+    if (e.key !== 'Tab') return;
+    if (e.shiftKey) {
+      if (document.activeElement === first) { e.preventDefault(); last?.focus(); }
+    } else {
+      if (document.activeElement === last)  { e.preventDefault(); first?.focus(); }
+    }
+  }
+
+  dialogState.set(dialog, { triggerBtn, trapKeydown });
+  dialog.addEventListener('keydown', trapKeydown);
   dialog.showModal();
   syncNavBtn(id, true);
+  first?.focus();
 }
 
 function closeDialog(dialog) {
   dialog.close();
-  syncNavBtn(dialog.id, false);
 }
 
 function syncNavBtn(dialogId, expanded) {
@@ -83,8 +104,15 @@ function initDialogs() {
       if (e.target === dialog) closeDialog(dialog);
     });
 
-    // Sync aria-expanded when closed via Escape key
-    dialog.addEventListener('close', () => syncNavBtn(dialog.id, false));
+    dialog.addEventListener('close', () => {
+      syncNavBtn(dialog.id, false);
+      const state = dialogState.get(dialog);
+      if (state) {
+        dialog.removeEventListener('keydown', state.trapKeydown);
+        dialogState.delete(dialog);
+        state.triggerBtn?.focus();
+      }
+    });
   });
 }
 
@@ -105,13 +133,13 @@ async function loadGitHubRepos() {
 
     const p = document.createElement('p');
     p.className   = 'error-state';
-    p.textContent = 'Could not load repositories. ';
+    p.textContent = (getVal(currentStrings, 'projects.errorMsg') ?? 'Could not load repositories.') + ' ';
 
     const a = document.createElement('a');
     a.href        = `https://github.com/${GITHUB_USER}`;
     a.target      = '_blank';
     a.rel         = 'noopener noreferrer';
-    a.textContent = 'View on GitHub →';
+    a.textContent = getVal(currentStrings, 'projects.errorLink') ?? 'View on GitHub →';
     p.append(a);
 
     container.append(p);
@@ -125,7 +153,7 @@ async function loadGitHubRepos() {
   if (repos.length === 0) {
     const p = document.createElement('p');
     p.className   = 'loading-state';
-    p.textContent = 'No public repositories found.';
+    p.textContent = getVal(currentStrings, 'projects.emptyMsg') ?? 'No public repositories found.';
     container.append(p);
     return;
   }
@@ -165,27 +193,38 @@ async function applyLocale(locale) {
   try {
     strings = await loadLocale(locale);
   } catch {
-    return; // keep current locale on failure
+    return;
   }
+
+  currentStrings = strings;
 
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const val = getVal(strings, el.dataset.i18n);
     if (val != null) el.textContent = val;
   });
 
-  // Update nav button labels (rendered by JS, not in DOM at parse time)
   for (const { dialogId, labelKey } of SECTIONS) {
     const btn = document.querySelector(`.nav-btn[data-dialog="${dialogId}"]`);
     const val = getVal(strings, labelKey);
     if (btn && val != null) btn.textContent = val;
   }
 
+  const treatoBtn = document.getElementById('treato-btn');
+  const treatoVal = getVal(strings, 'nav.treatoTime');
+  if (treatoBtn && treatoVal != null) treatoBtn.textContent = treatoVal;
+
   document.documentElement.lang = locale;
 }
 
 function initLocale() {
   const select = document.getElementById('locale-select');
-  select?.addEventListener('change', e => applyLocale(e.target.value));
+  const saved  = localStorage.getItem('locale') ?? 'en';
+  if (select) select.value = saved;
+  select?.addEventListener('change', e => {
+    localStorage.setItem('locale', e.target.value);
+    applyLocale(e.target.value);
+  });
+  return applyLocale(saved);
 }
 
 // ─── Contact form ─────────────────────────────────────────────────────────────
@@ -521,7 +560,7 @@ function initContactForm() {
 
     status.hidden      = false;
     status.className   = 'contact-status contact-status--loading';
-    status.textContent = RITUAL_LOADING;
+    status.textContent = getVal(currentStrings, 'contact.statusLoading') ?? RITUAL_LOADING;
 
     try {
       const res = await fetch(FORMSPREE_ENDPOINT, {
@@ -532,15 +571,15 @@ function initContactForm() {
 
       if (res.ok) {
         status.className   = 'contact-status contact-status--success';
-        status.textContent = pick(RITUAL_SUCCESS);
+        status.textContent = getVal(currentStrings, 'contact.statusSuccess') ?? pick(RITUAL_SUCCESS);
         loadPersona();
       } else {
         status.className   = 'contact-status contact-status--error';
-        status.textContent = pick(RITUAL_ERROR);
+        status.textContent = getVal(currentStrings, 'contact.statusError') ?? pick(RITUAL_ERROR);
       }
     } catch {
       status.className   = 'contact-status contact-status--error';
-      status.textContent = pick(RITUAL_ERROR);
+      status.textContent = getVal(currentStrings, 'contact.statusError') ?? pick(RITUAL_ERROR);
     } finally {
       submitBtn.disabled = false;
     }
@@ -554,6 +593,7 @@ function buildTreatoButton() {
   if (!list) return;
   const li  = document.createElement('li');
   const btn = document.createElement('button');
+  btn.id          = 'treato-btn';
   btn.className   = 'nav-btn';
   btn.textContent = 'Treato Time';
   btn.addEventListener('click', triggerTreato);
@@ -579,11 +619,11 @@ function initRipple() {
 
 // ─── Boot ─────────────────────────────────────────────────────────────────────
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   buildNav();
   buildTreatoButton();
   initDialogs();
-  initLocale();
+  await initLocale();
   loadGitHubRepos();
   initContactForm();
   initRipple();
