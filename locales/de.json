@@ -5,7 +5,8 @@
     "projects": "Projekte & Fähigkeiten",
     "resume": "Lebenslauf",
     "contact": "Kontakt",
-    "langSelect": "Sprache auswählen"
+    "langSelect": "Sprache auswählen",
+    "treatoTime": "Leckerei-Zeit!"
   },
   "timeline": {
     "title": "Berufsweg",
@@ -57,14 +58,18 @@
   },
   "projects": {
     "title": "Projekte & Fähigkeiten",
+    "skillsHeading": "Technische Fähigkeiten",
     "reposHeading": "GitHub-Projekte",
     "loading": "Repositories werden geladen…",
     "errorMsg": "Repositories konnten nicht geladen werden.",
-    "errorLink": "Auf GitHub ansehen →"
+    "errorLink": "Auf GitHub ansehen →",
+    "emptyMsg": "Keine öffentlichen Repositories gefunden."
   },
   "resume": {
     "title": "Lebenslauf",
-    "download": "Download PDF"
+    "download": "PDF herunterladen",
+    "pdfFallback": "Ihr Browser kann dieses PDF nicht anzeigen.",
+    "pdfFallbackLink": "Lebenslauf herunterladen"
   },
   "contact": {
     "title": "Kontakt",
@@ -78,6 +83,10 @@
     "reasonPhd": "Promotionsprogramm",
     "reasonGeneral": "Allgemeine Anfrage",
     "reasonOther": "Sonstiges",
-    "submit": "Nachricht senden"
+    "submit": "Nachricht senden",
+    "hintRequired": "Pflichtfeld",
+    "statusLoading": "Wird gesendet…",
+    "statusSuccess": "Nachricht gesendet! Phillip wird sich bald melden.",
+    "statusError": "Senden fehlgeschlagen. Bitte versuchen Sie es erneut."
   }
 }

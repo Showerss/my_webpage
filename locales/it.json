@@ -5,7 +5,8 @@
     "projects": "Progetti e Competenze",
     "resume": "Curriculum",
     "contact": "Contatto",
-    "langSelect": "Seleziona lingua"
+    "langSelect": "Seleziona lingua",
+    "treatoTime": "Ora dei Premi!"
   },
   "timeline": {
     "title": "Cronologia Lavorativa",
@@ -57,14 +58,18 @@
   },
   "projects": {
     "title": "Progetti e Competenze",
+    "skillsHeading": "Competenze Tecniche",
     "reposHeading": "Progetti GitHub",
     "loading": "Caricamento repository…",
     "errorMsg": "Impossibile caricare i repository.",
-    "errorLink": "Vedi su GitHub →"
+    "errorLink": "Vedi su GitHub →",
+    "emptyMsg": "Nessun repository pubblico trovato."
   },
   "resume": {
     "title": "Curriculum",
-    "download": "Download PDF"
+    "download": "Scarica PDF",
+    "pdfFallback": "Il browser non può visualizzare questo PDF.",
+    "pdfFallbackLink": "Scarica il curriculum invece"
   },
   "contact": {
     "title": "Contatto",
@@ -78,6 +83,10 @@
     "reasonPhd": "Programma di dottorato",
     "reasonGeneral": "Richiesta generale",
     "reasonOther": "Altro",
-    "submit": "Invia messaggio"
+    "submit": "Invia messaggio",
+    "hintRequired": "Obbligatorio",
+    "statusLoading": "Invio in corso…",
+    "statusSuccess": "Messaggio inviato! Phillip risponderà presto.",
+    "statusError": "Invio fallito. Riprova."
   }
 }

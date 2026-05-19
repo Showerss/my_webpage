@@ -5,7 +5,8 @@
     "projects": "Proyectos y Habilidades",
     "resume": "Currículum",
     "contact": "Contacto",
-    "langSelect": "Seleccionar idioma"
+    "langSelect": "Seleccionar idioma",
+    "treatoTime": "¡Hora del Premio!"
   },
   "timeline": {
     "title": "Historial Laboral",
@@ -57,14 +58,18 @@
   },
   "projects": {
     "title": "Proyectos y Habilidades",
+    "skillsHeading": "Habilidades Técnicas",
     "reposHeading": "Proyectos en GitHub",
     "loading": "Cargando repositorios…",
     "errorMsg": "No se pudieron cargar los repositorios.",
-    "errorLink": "Ver en GitHub →"
+    "errorLink": "Ver en GitHub →",
+    "emptyMsg": "No se encontraron repositorios públicos."
   },
   "resume": {
     "title": "Currículum",
-    "download": "Download PDF"
+    "download": "Descargar PDF",
+    "pdfFallback": "Tu navegador no puede mostrar este PDF.",
+    "pdfFallbackLink": "Descargar el currículum en su lugar"
   },
   "contact": {
     "title": "Contacto",
@@ -78,6 +83,10 @@
     "reasonPhd": "Programa de doctorado",
     "reasonGeneral": "Consulta general",
     "reasonOther": "Otro",
-    "submit": "Enviar mensaje"
+    "submit": "Enviar mensaje",
+    "hintRequired": "Requerido",
+    "statusLoading": "Enviando…",
+    "statusSuccess": "¡Mensaje enviado! Phillip responderá pronto.",
+    "statusError": "Error al enviar. Por favor, inténtalo de nuevo."
   }
 }

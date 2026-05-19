@@ -5,7 +5,8 @@
     "projects": "Projets & Compétences",
     "resume": "CV",
     "contact": "Contact",
-    "langSelect": "Sélectionner la langue"
+    "langSelect": "Sélectionner la langue",
+    "treatoTime": "C'est l'heure des friandises !"
   },
   "timeline": {
     "title": "Parcours Professionnel",
@@ -57,14 +58,18 @@
   },
   "projects": {
     "title": "Projets & Compétences",
+    "skillsHeading": "Compétences Techniques",
     "reposHeading": "Projets GitHub",
     "loading": "Chargement des dépôts…",
     "errorMsg": "Impossible de charger les dépôts.",
-    "errorLink": "Voir sur GitHub →"
+    "errorLink": "Voir sur GitHub →",
+    "emptyMsg": "Aucun dépôt public trouvé."
   },
   "resume": {
     "title": "CV",
-    "download": "Download PDF"
+    "download": "Télécharger le PDF",
+    "pdfFallback": "Votre navigateur ne peut pas afficher ce PDF.",
+    "pdfFallbackLink": "Télécharger le CV à la place"
   },
   "contact": {
     "title": "Contact",
@@ -78,6 +83,10 @@
     "reasonPhd": "Programme de doctorat",
     "reasonGeneral": "Renseignement général",
     "reasonOther": "Autre",
-    "submit": "Envoyer"
+    "submit": "Envoyer",
+    "hintRequired": "Requis",
+    "statusLoading": "Envoi en cours…",
+    "statusSuccess": "Message envoyé ! Phillip vous répondra bientôt.",
+    "statusError": "L'envoi a échoué. Veuillez réessayer."
   }
 }

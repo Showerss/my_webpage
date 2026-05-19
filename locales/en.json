@@ -5,7 +5,8 @@
     "projects": "Projects & Skills",
     "resume": "Resume",
     "contact": "Contact",
-    "langSelect": "Select language"
+    "langSelect": "Select language",
+    "treatoTime": "Treato Time"
   },
   "timeline": {
     "title": "Work History",
@@ -57,14 +58,18 @@
   },
   "projects": {
     "title": "Projects & Skills",
+    "skillsHeading": "Technical Skills",
     "reposHeading": "GitHub Projects",
     "loading": "Loading repositories…",
     "errorMsg": "Could not load repositories.",
-    "errorLink": "View on GitHub →"
+    "errorLink": "View on GitHub →",
+    "emptyMsg": "No public repositories found."
   },
   "resume": {
     "title": "Resume",
-    "download": "Download PDF"
+    "download": "Download PDF",
+    "pdfFallback": "Your browser cannot display this PDF.",
+    "pdfFallbackLink": "Download the resume instead"
   },
   "contact": {
     "title": "Contact",
@@ -78,6 +83,7 @@
     "reasonPhd": "PhD Program",
     "reasonGeneral": "General Inquiry",
     "reasonOther": "Other",
-    "submit": "Send Message"
+    "submit": "Send Message",
+    "hintRequired": "Required"
   }
 }
