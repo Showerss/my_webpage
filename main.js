@@ -1,4 +1,6 @@
 import { triggerTreato } from './treato.js';
+import './components/project-card.js';
+import './components/theme-picker.js';
 
 /**
  * Section config — single source of truth for nav + dialogs.
@@ -88,51 +90,6 @@ function initDialogs() {
 
 // ─── GitHub repos ─────────────────────────────────────────────────────────────
 
-function buildRepoCard(repo) {
-  const article = document.createElement('article');
-  article.className = 'repo-card';
-
-  const h4   = document.createElement('h4');
-  const link = document.createElement('a');
-  link.href      = repo.html_url;
-  link.target    = '_blank';
-  link.rel       = 'noopener noreferrer';
-  link.textContent = repo.name;
-  h4.append(link);
-  article.append(h4);
-
-  if (repo.description) {
-    const p = document.createElement('p');
-    p.textContent = repo.description;
-    article.append(p);
-  }
-
-  const meta = document.createElement('footer');
-  meta.className = 'repo-meta';
-
-  if (repo.language) {
-    const lang = document.createElement('span');
-    lang.className   = 'repo-lang';
-    lang.textContent = repo.language;
-    meta.append(lang);
-  }
-
-  const stars = document.createElement('span');
-  stars.className   = 'repo-stars';
-  stars.textContent = `★ ${repo.stargazers_count}`;
-  meta.append(stars);
-
-  const updated = document.createElement('time');
-  updated.dateTime  = repo.updated_at;
-  updated.textContent = new Date(repo.updated_at).toLocaleDateString('en-US', {
-    year: 'numeric', month: 'short',
-  });
-  meta.append(updated);
-
-  article.append(meta);
-  return article;
-}
-
 async function loadGitHubRepos() {
   const container = document.getElementById('github-repos');
   if (!container) return;
@@ -173,7 +130,16 @@ async function loadGitHubRepos() {
     return;
   }
 
-  repos.forEach(repo => container.append(buildRepoCard(repo)));
+  repos.forEach(repo => {
+    const card = document.createElement('project-card');
+    card.setAttribute('repo-name', repo.name);
+    card.setAttribute('url', repo.html_url);
+    card.setAttribute('description', repo.description ?? '');
+    card.setAttribute('language', repo.language ?? '');
+    card.setAttribute('stars', repo.stargazers_count);
+    card.setAttribute('updated', repo.updated_at);
+    container.append(card);
+  });
 }
 
 // ─── i18n ─────────────────────────────────────────────────────────────────────
@@ -220,22 +186,6 @@ async function applyLocale(locale) {
 function initLocale() {
   const select = document.getElementById('locale-select');
   select?.addEventListener('change', e => applyLocale(e.target.value));
-}
-
-// ─── Theme ────────────────────────────────────────────────────────────────────
-
-function initTheme() {
-  const saved = localStorage.getItem('theme') ?? 'crt';
-  document.documentElement.dataset.theme = saved;
-
-  const select = document.getElementById('theme-select');
-  if (select) select.value = saved;
-
-  select?.addEventListener('change', e => {
-    const theme = e.target.value;
-    document.documentElement.dataset.theme = theme;
-    localStorage.setItem('theme', theme);
-  });
 }
 
 // ─── Contact form ─────────────────────────────────────────────────────────────
@@ -634,7 +584,6 @@ document.addEventListener('DOMContentLoaded', () => {
   buildTreatoButton();
   initDialogs();
   initLocale();
-  initTheme();
   loadGitHubRepos();
   initContactForm();
   initRipple();

@@ -446,31 +446,43 @@ body {
 }
 
 /* ============================================================
-   THEME SELECTOR
+   THEME PICKER (web component)
    ============================================================ */
-.nav-theme {
+theme-picker {
   border-left: 1px solid var(--color-border);
   padding-left: var(--sp-sm);
   margin-left: var(--sp-sm);
+  display: flex;
+  align-items: center;
 }
 
-.nav-theme select {
-  background: transparent;
-  border: 1px solid var(--color-border);
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  color: var(--color-text);
+.theme-swatches {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.theme-swatch {
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 50%;
+  background: var(--swatch-color);
+  border: 1px solid rgba(0, 0, 0, 0.2);
   cursor: pointer;
-  padding: var(--sp-xs) var(--sp-sm);
-  transition: background 0.12s, color 0.12s;
+  padding: 0;
+  transition: transform 0.12s;
 }
 
-.nav-theme select:hover {
-  background: var(--color-text);
-  color: var(--color-window-bg);
+.theme-swatch:hover {
+  transform: scale(1.25);
 }
 
-.nav-theme select:focus-visible {
+.theme-swatch--active {
+  outline: 2px solid var(--color-border);
+  outline-offset: 2px;
+}
+
+.theme-swatch:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
@@ -760,6 +772,10 @@ dialog:not([open]) {
 /* ============================================================
    GITHUB REPO CARDS
    ============================================================ */
+project-card {
+  display: contents; /* transparent to grid layout; <article> inside becomes the grid item */
+}
+
 .github-repos {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
