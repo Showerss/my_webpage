@@ -1,0 +1,225 @@
+/* ============================================================
+   TUI THEME  (Dracula palette · #21222c page · #282a36 windows ·
+   purple→pink gradient accents)
+   ============================================================ */
+
+[data-theme="tui"] {
+  /* Dracula terminal palette — 4-colour cycling accents */
+  --tui-1: #bd93f9;   /* Dracula purple — headings / primary */
+  --tui-2: #8be9fd;   /* Dracula cyan   — links / info */
+  --tui-3: #50fa7b;   /* Dracula green  — success / stars */
+  --tui-4: #ff5555;   /* Dracula red    — danger / close */
+
+  --tui-1-rgb: 189, 147, 249;
+  --tui-2-rgb: 139, 233, 253;
+  --tui-3-rgb: 80, 250, 123;
+  --tui-4-rgb: 255, 85, 85;
+
+  /* Surfaces: page is Dracula dark variant; windows are Dracula bg */
+  --color-bg:         #21222c;
+  --color-text:       #f8f8f2;
+  --color-border:     #44475a;
+  --color-window-bg:  #282a36;
+  --color-window-bar: #191a21;
+  --color-primary:    var(--tui-1);
+  --color-watermark:  #21222c;
+
+  --shadow-nav:    4px 4px 0 rgba(98,114,164,0.70), 0 4px 24px rgba(0,0,0,0.60);
+  --shadow-window: 6px 6px 0 rgba(98,114,164,0.55), 0 8px 32px rgba(0,0,0,0.55);
+
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+
+  /* Timeline era tokens */
+  --timeline-military:      var(--tui-3);
+  --timeline-military-rgb:  var(--tui-3-rgb);
+  --timeline-tech:          var(--tui-1);
+  --timeline-tech-rgb:      var(--tui-1-rgb);
+  --timeline-education:     var(--tui-2);
+  --timeline-education-rgb: var(--tui-2-rgb);
+
+  --font-mono: "Roboto Mono", monospace;
+  --font-sans: "Roboto Mono", monospace;
+
+  /* Dracula purple→pink gradient shared between nav + titlebars */
+  --dracula-gradient: linear-gradient(to right, #bd93f9, #ff79c6, #8be9fd);
+}
+
+/* Dracula page background with faint grid */
+[data-theme="tui"] body {
+  background-color: #21222c;
+  background-image:
+    linear-gradient(rgba(68,71,90,0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(68,71,90,0.15) 1px, transparent 1px);
+  background-size: 20px 20px;
+  color: #f8f8f2;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Nav — Dracula gradient stripe along top edge */
+[data-theme="tui"] .floating-nav::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--dracula-gradient);
+  pointer-events: none;
+}
+
+/* Nav button hover — Dracula purple fill */
+[data-theme="tui"] .nav-btn:hover,
+[data-theme="tui"] .nav-btn[aria-expanded="true"] {
+  background: var(--tui-1);
+  color: #1c1c1c;
+}
+
+/* Locale / theme selects */
+[data-theme="tui"] .nav-locale select:hover,
+[data-theme="tui"] .nav-theme select:hover {
+  background: var(--tui-1);
+  color: #1c1c1c;
+}
+
+/* Titlebar — flat dark + Dracula gradient stripe along bottom */
+[data-theme="tui"] .window-titlebar {
+  background-color: var(--color-window-bar);
+  background-image: var(--dracula-gradient);
+  background-size: 100% 3px;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  border-bottom: none;
+}
+
+[data-theme="tui"] .window-titlebar h2 {
+  background: rgba(248,248,242,0.05);
+  border-color: var(--color-border);
+  color: #f8f8f2;
+}
+
+/* Section headings — Dracula purple */
+[data-theme="tui"] .window-content h3 {
+  color: var(--tui-1);
+}
+
+/* Close button — Dracula red on hover */
+[data-theme="tui"] .close-btn:hover {
+  background: var(--tui-4);
+}
+
+/* Section headings — cycle 4 Dracula accent colours */
+[data-theme="tui"] section:nth-child(4n+1) h3 { border-bottom-color: var(--tui-1); }
+[data-theme="tui"] section:nth-child(4n+2) h3 { border-bottom-color: var(--tui-2); }
+[data-theme="tui"] section:nth-child(4n+3) h3 { border-bottom-color: var(--tui-3); }
+[data-theme="tui"] section:nth-child(4n)   h3 { border-bottom-color: var(--tui-4); }
+
+/* Feature list markers */
+[data-theme="tui"] .feature-list--pro li::before     { content: '✓'; color: var(--tui-1); }
+[data-theme="tui"] .feature-list--con li::before     { content: '!'; color: var(--tui-4); }
+[data-theme="tui"] .feature-list--neutral li::before { content: '–'; color: var(--tui-3); opacity: 1; }
+
+/* Links */
+[data-theme="tui"] .window-content a { color: var(--tui-2); }
+
+[data-theme="tui"] .window-content a:hover {
+  background: var(--tui-2);
+  color: #1c1c1c;
+}
+
+/* Skill tags — Dracula colours per slot */
+[data-theme="tui"] .skills-list > li:nth-child(4n+1) .skill-tag {
+  background: rgba(var(--tui-1-rgb), 0.12);
+  color: var(--tui-1);
+  border-color: rgba(var(--tui-1-rgb), 0.45);
+}
+[data-theme="tui"] .skills-list > li:nth-child(4n+2) .skill-tag {
+  background: rgba(var(--tui-2-rgb), 0.12);
+  color: var(--tui-2);
+  border-color: rgba(var(--tui-2-rgb), 0.45);
+}
+[data-theme="tui"] .skills-list > li:nth-child(4n+3) .skill-tag {
+  background: rgba(var(--tui-3-rgb), 0.12);
+  color: var(--tui-3);
+  border-color: rgba(var(--tui-3-rgb), 0.45);
+}
+[data-theme="tui"] .skills-list > li:nth-child(4n) .skill-tag {
+  background: rgba(var(--tui-4-rgb), 0.12);
+  color: var(--tui-4);
+  border-color: rgba(var(--tui-4-rgb), 0.45);
+}
+
+/* Repo cards */
+[data-theme="tui"] .repo-card {
+  background: rgba(248,248,242,0.03);
+  border-color: var(--color-border);
+  transition: border-color 0.15s;
+}
+
+[data-theme="tui"] .repo-card:hover {
+  border-color: var(--tui-1);
+}
+
+[data-theme="tui"] .repo-card h4 a { color: var(--tui-2); }
+
+[data-theme="tui"] .repo-card h4 a:hover {
+  background: var(--tui-2);
+  color: #1c1c1c;
+}
+
+[data-theme="tui"] .repo-lang  { color: var(--tui-1); }
+[data-theme="tui"] .repo-stars { color: var(--tui-3); opacity: 1; }
+
+/* Form inputs */
+[data-theme="tui"] .form-field input,
+[data-theme="tui"] .form-field select,
+[data-theme="tui"] .form-field textarea {
+  background: rgba(248,248,242,0.05);
+  border-color: var(--color-border);
+  color: #f8f8f2;
+}
+
+[data-theme="tui"] .form-field input:focus,
+[data-theme="tui"] .form-field select:focus,
+[data-theme="tui"] .form-field textarea:focus {
+  outline: 2px solid var(--tui-2);
+  outline-offset: 1px;
+}
+
+/* Submit button */
+[data-theme="tui"] .submit-btn {
+  background: var(--tui-1);
+  color: #1c1c1c;
+  border-color: var(--tui-1);
+  transition: background 0.15s, color 0.15s;
+}
+
+[data-theme="tui"] .submit-btn:hover:not(:disabled) {
+  background: #6efaab;
+  color: #1c1c1c;
+}
+
+/* Contact form status colours */
+[data-theme="tui"] .contact-status--loading { border-left-color: var(--tui-3); }
+[data-theme="tui"] .contact-status--success { border-left-color: var(--tui-1); }
+[data-theme="tui"] .contact-status--error   { border-left-color: var(--tui-4); }
+
+/* Modal backdrop */
+[data-theme="tui"] .mac-os-window::backdrop {
+  background: rgba(10, 10, 15, 0.78);
+}
+
+/* ============================================================
+   RESUME DIALOG OVERRIDES
+   ============================================================ */
+
+[data-theme="tui"] .resume-print-btn {
+  background: var(--tui-1);
+  color: #1c1c1c;
+  border-color: var(--tui-1);
+}
+
+[data-theme="tui"] .resume-print-btn:hover {
+  background: #6efaab;
+  color: #1c1c1c;
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JetBrains/web-types/master/schema/web-types.json",
+  "framework": "html",
+  "name": "my_webpage",
+  "version": "1.0.0",
+  "contributions": {
+    "html": {
+      "elements": [
+        {
+          "name": "theme-picker",
+          "description": "Theme switcher Web Component (components/theme-picker.js)",
+          "doc-url": ""
+        },
+        {
+          "name": "project-card",
+          "description": "Project card Web Component (components/project-card.js)",
+          "doc-url": ""
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,388 @@
+/* ============================================================
+   MATERIAL THEME  (Google Material Design 3)
+   Override vars + scoped component rules.
+   Zero layout CSS changes — only tokens and cosmetic details.
+   ============================================================ */
+[data-theme="material"] {
+  --color-watermark:  #F2F3F4;
+  --color-bg:         #F8F9FA;   /* Google surface grey */
+  --color-text:       #202124;   /* Google dark text */
+  --color-border:     #DADCE0;   /* Google subtle outline */
+  --color-window-bg:  #FFFFFF;
+  --color-window-bar: #F1F3F4;   /* neutral title-bar surface */
+
+  /* Full Google brand palette */
+  --g-blue:   #4285F4;
+  --g-red:    #EA4335;
+  --g-yellow: #FBBC05;
+  --g-green:  #34A853;
+
+  /* RGB triplets for rgba() composition */
+  --g-blue-rgb:   66, 133, 244;
+  --g-red-rgb:    234, 67, 53;
+  --g-yellow-rgb: 251, 188, 5;
+  --g-green-rgb:  52, 168, 83;
+
+  --color-primary: var(--g-blue);
+
+  /* Hard-stop 4-colour stripe: equal quarter segments */
+  --g-rainbow: linear-gradient(to right,
+    var(--g-blue)   0%  25%,
+    var(--g-red)   25%  50%,
+    var(--g-yellow) 50% 75%,
+    var(--g-green)  75% 100%
+  );
+
+  --shadow-nav:    0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08);
+  --shadow-window: 0 4px 12px rgba(0,0,0,0.14), 0 2px 4px rgba(0,0,0,0.10);
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+
+  --font-mono: "Roboto Mono", "Courier New", Courier, monospace;
+  --font-sans: "Roboto", "Helvetica Neue", Arial, sans-serif;
+
+  /* Timeline era tokens */
+  --timeline-military:      var(--g-blue);
+  --timeline-military-rgb:  var(--g-blue-rgb);
+  --timeline-tech:          var(--g-green);
+  --timeline-tech-rgb:      var(--g-green-rgb);
+  --timeline-education:     var(--g-yellow);
+  --timeline-education-rgb: var(--g-yellow-rgb);
+}
+
+/* Roboto for all UI text; monospace stays for code-like elements */
+[data-theme="material"] body,
+[data-theme="material"] .nav-btn,
+[data-theme="material"] .nav-locale select,
+[data-theme="material"] .nav-theme select,
+[data-theme="material"] .window-titlebar h2,
+[data-theme="material"] .window-content,
+[data-theme="material"] .window-content p,
+[data-theme="material"] .spec-list dt,
+[data-theme="material"] .spec-list dd,
+[data-theme="material"] .feature-list li,
+[data-theme="material"] .repo-card p,
+[data-theme="material"] .repo-meta {
+  font-family: var(--font-sans);
+}
+
+/* Flat, textureless background */
+[data-theme="material"] body {
+  background-image: none;
+}
+
+/* Pill nav + 4-colour top accent stripe via pseudo-element */
+[data-theme="material"] .floating-nav {
+  border-radius: var(--radius-lg);
+  border-color: transparent;
+}
+
+[data-theme="material"] .floating-nav::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--g-rainbow);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  pointer-events: none;
+}
+
+/* Nav buttons cycle through a Google colour on hover */
+[data-theme="material"] .nav-btn {
+  border-color: transparent;
+  border-radius: var(--radius-sm);
+}
+
+[data-theme="material"] .floating-nav > ul > li:nth-child(4n+1) .nav-btn:hover,
+[data-theme="material"] .floating-nav > ul > li:nth-child(4n+1) .nav-btn[aria-expanded="true"] {
+  background: rgba(var(--g-blue-rgb), 0.12);
+  color: var(--g-blue);
+}
+
+[data-theme="material"] .floating-nav > ul > li:nth-child(4n+2) .nav-btn:hover,
+[data-theme="material"] .floating-nav > ul > li:nth-child(4n+2) .nav-btn[aria-expanded="true"] {
+  background: rgba(var(--g-red-rgb), 0.12);
+  color: var(--g-red);
+}
+
+[data-theme="material"] .floating-nav > ul > li:nth-child(4n+3) .nav-btn:hover,
+[data-theme="material"] .floating-nav > ul > li:nth-child(4n+3) .nav-btn[aria-expanded="true"] {
+  background: rgba(var(--g-yellow-rgb), 0.14);
+  color: #92600A;   /* dark amber — WCAG AA on white */
+}
+
+[data-theme="material"] .floating-nav > ul > li:nth-child(4n+4) .nav-btn:hover,
+[data-theme="material"] .floating-nav > ul > li:nth-child(4n+4) .nav-btn[aria-expanded="true"] {
+  background: rgba(var(--g-green-rgb), 0.12);
+  color: #137333;   /* darkened green for contrast */
+}
+
+/* Material selects */
+[data-theme="material"] .nav-locale select,
+[data-theme="material"] .nav-theme select {
+  border-radius: var(--radius-sm);
+}
+
+[data-theme="material"] .nav-locale select:hover,
+[data-theme="material"] .nav-theme select:hover {
+  background: rgba(var(--g-blue-rgb), 0.08);
+  color: var(--color-text);
+}
+
+/* Rounded dialog window; overflow:hidden clips children to the radius */
+[data-theme="material"] .mac-os-window {
+  border-radius: var(--radius-lg);
+  border-color: transparent;
+  overflow: hidden;
+  transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Clean title bar — 4-colour bottom stripe via background layers */
+[data-theme="material"] .window-titlebar {
+  background-color: var(--color-window-bar);
+  background-image: var(--g-rainbow);
+  background-size: 100% 3px;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  border-bottom: none;
+  border-radius: 0;   /* parent overflow:hidden handles the top corners */
+}
+
+[data-theme="material"] .window-titlebar h2 {
+  border-color: transparent;
+  border-radius: var(--radius-sm);
+  background: rgba(0, 0, 0, 0.04);
+  color: var(--color-text);
+}
+
+/* Circle close button — turns Google Red on hover */
+[data-theme="material"] .close-btn {
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.06);
+  background-image: url("../assets/img/material-close.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 14px 14px;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+[data-theme="material"] .close-btn::before,
+[data-theme="material"] .close-btn::after {
+  display: none;
+}
+
+[data-theme="material"] .close-btn:hover {
+  background-color: rgba(var(--g-red-rgb), 0.14);
+}
+
+[data-theme="material"] .close-btn:active {
+  transform: scale(0.9);
+}
+
+/* Section headings — left-border accent cycling through Google colours */
+[data-theme="material"] .window-content h3 {
+  border-bottom: none;
+  border-left: 3px solid var(--g-blue);
+  padding-left: var(--sp-sm);
+  padding-bottom: 0;
+}
+
+[data-theme="material"] section:nth-child(4n+1) h3,
+[data-theme="material"] article:nth-child(4n+1) h3 { border-left-color: var(--g-blue); }
+
+[data-theme="material"] section:nth-child(4n+2) h3,
+[data-theme="material"] article:nth-child(4n+2) h3 { border-left-color: var(--g-red); }
+
+[data-theme="material"] section:nth-child(4n+3) h3,
+[data-theme="material"] article:nth-child(4n+3) h3 { border-left-color: var(--g-yellow); }
+
+[data-theme="material"] section:nth-child(4n+4) h3,
+[data-theme="material"] article:nth-child(4n+4) h3 { border-left-color: var(--g-green); }
+
+/* Feature list markers — semantic colour coding */
+[data-theme="material"] .feature-list--pro li::before     { content: '✓'; color: #137333; }
+[data-theme="material"] .feature-list--con li::before     { content: '!'; color: var(--g-red); }
+[data-theme="material"] .feature-list--neutral li::before { content: '–'; color: #92600A; }
+
+/* Profile photo — circular with soft shadow */
+[data-theme="material"] .profile-photo {
+  border-radius: 50%;
+  border-color: transparent;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.16);
+}
+
+/* Links use primary blue */
+[data-theme="material"] .window-content a {
+  color: var(--g-blue);
+}
+
+[data-theme="material"] .window-content a:hover {
+  background: rgba(var(--g-blue-rgb), 0.08);
+  color: var(--g-blue);
+}
+
+/* Skill tags cycle through all 4 Google colours */
+[data-theme="material"] .skill-tag {
+  border-radius: var(--radius-sm);
+  border-color: transparent;
+  transition: box-shadow 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+              transform  0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="material"] .skills-list > li:nth-child(4n+1) .skill-tag {
+  background: rgba(var(--g-blue-rgb), 0.12);
+  color: #1558D6;
+}
+
+[data-theme="material"] .skills-list > li:nth-child(4n+2) .skill-tag {
+  background: rgba(var(--g-red-rgb), 0.12);
+  color: #C5221F;
+}
+
+[data-theme="material"] .skills-list > li:nth-child(4n+3) .skill-tag {
+  background: rgba(var(--g-yellow-rgb), 0.16);
+  color: #92600A;
+}
+
+[data-theme="material"] .skills-list > li:nth-child(4n) .skill-tag {
+  background: rgba(var(--g-green-rgb), 0.12);
+  color: #137333;
+}
+
+/* Repo cards — rounded, white surface */
+[data-theme="material"] .repo-card {
+  border-radius: var(--radius-md);
+  background: var(--color-window-bg);
+  border-color: var(--color-border);
+  transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              transform  0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="material"] .repo-card h4 a {
+  color: var(--g-blue);
+}
+
+[data-theme="material"] .repo-card h4 a:hover {
+  background: rgba(var(--g-blue-rgb), 0.08);
+  color: var(--g-blue);
+}
+
+/* Repo meta — language in green, stars in amber */
+[data-theme="material"] .repo-lang  { color: #137333; }
+[data-theme="material"] .repo-stars { color: #92600A; opacity: 1; }
+
+/* Contact form — rounded inputs, blue focus, semantic status colours */
+[data-theme="material"] .form-field input,
+[data-theme="material"] .form-field select,
+[data-theme="material"] .form-field textarea {
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+}
+
+[data-theme="material"] .submit-btn {
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  background: var(--g-blue);
+  border-color: transparent;
+}
+
+[data-theme="material"] .submit-btn:hover:not(:disabled) {
+  background: #1a73e8;
+  color: #ffffff;
+}
+
+[data-theme="material"] .contact-status--loading { border-left-color: var(--g-blue); }
+[data-theme="material"] .contact-status--success { border-left-color: var(--g-green); }
+[data-theme="material"] .contact-status--error   { border-left-color: var(--g-red); }
+
+/* Elevation lift — dialog windows */
+[data-theme="material"] .mac-os-window:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.18), 0 4px 8px rgba(0,0,0,0.12);
+}
+
+/* Elevation lift — repo cards */
+[data-theme="material"] .repo-card:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.10);
+  transform: translateY(-3px);
+}
+
+/* Elevation lift — skill chips */
+[data-theme="material"] .skills-list > li .skill-tag:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.14);
+  transform: translateY(-1px);
+}
+
+/* ============================================================
+   RIPPLE EFFECT
+   Invisible by default — animation activated only in material
+   theme. Host elements need position:relative + overflow:hidden.
+   ============================================================ */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  width: 60px;
+  height: 60px;
+  transform: translate(-50%, -50%) scale(0);
+  background: rgba(0, 0, 0, 0.12);
+  opacity: 0;
+}
+
+@keyframes ripple-expand {
+  from {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.35;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(5);
+    opacity: 0;
+  }
+}
+
+[data-theme="material"] .ripple {
+  animation: ripple-expand 0.45s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+[data-theme="material"] .submit-btn .ripple {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ============================================================
+   TIMELINE OVERRIDES
+   ============================================================ */
+
+/* Material: soften the swatch corners */
+[data-theme="material"] .timeline-legend-swatch {
+  border-radius: var(--radius-sm);
+}
+
+[data-theme="material"] .timeline-legend {
+  font-family: var(--font-sans);
+}
+
+[data-theme="material"] .timeline-year,
+[data-theme="material"] .timeline-desc {
+  font-family: var(--font-sans);
+}
+
+/* ============================================================
+   RESUME DIALOG OVERRIDES
+   ============================================================ */
+
+[data-theme="material"] .resume-print-btn {
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  background: var(--g-blue);
+  border-color: transparent;
+  color: #fff;
+}
+
+[data-theme="material"] .resume-print-btn:hover {
+  background: #1a73e8;
+  color: #fff;
+}

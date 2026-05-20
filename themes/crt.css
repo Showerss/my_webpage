@@ -1,0 +1,114 @@
+/* ============================================================
+   CRT OVERLAY
+   Purely cosmetic glass-in-front-of-screen effect.
+   Tweak --crt-scanline-opacity / --crt-vignette-strength in
+   :root to dial intensity up or down without touching layout.
+   ============================================================ */
+
+/* Vignette — edges darken toward the corners */
+html[data-theme="crt"] body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    transparent 55%,
+    rgba(0, 0, 0, var(--crt-vignette-strength)) 100%
+  );
+}
+
+/* Scanlines — repeating faint horizontal stripes */
+html[data-theme="crt"] body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, var(--crt-scanline-opacity)) 2px,
+    rgba(0, 0, 0, var(--crt-scanline-opacity)) 4px
+  );
+}
+
+/* Slow flicker — mimics aging CRT brightness instability */
+@keyframes crt-flicker {
+  0%         { filter: brightness(1);    }
+  30%        { filter: brightness(0.98); }
+  50%        { filter: brightness(1);    }
+  75%        { filter: brightness(0.97); }
+  80%        { filter: brightness(1);    }
+  100%       { filter: brightness(0.99); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html[data-theme="crt"] body {
+    animation: crt-flicker var(--crt-flicker-duration) ease-in-out infinite;
+  }
+}
+
+/* ============================================================
+   CRT THEME  (Retro phosphor-terminal palette)
+   Accent tokens layered on top of the default :root values.
+   The overlay effects (scanlines, vignette, flicker) are above.
+   ============================================================ */
+[data-theme="crt"] {
+  /* 4-colour retro palette — phosphor-inspired */
+  --crt-1: #BABCFA;   /* periwinkle — primary, shadows, main accent */
+  --crt-2: #E8A030;   /* amber — warm P3-phosphor glow */
+  --crt-3: #2CB5AA;   /* teal — cool phosphor / cyan */
+  --crt-4: #E05C5C;   /* coral — error LED, close/danger */
+
+  /* RGB triplets for rgba() composition */
+  --crt-1-rgb: 186, 188, 250;
+  --crt-2-rgb: 232, 160, 48;
+  --crt-3-rgb: 44, 181, 170;
+  --crt-4-rgb: 224, 92, 92;
+
+  --color-primary: var(--crt-1);
+  --shadow-nav:    4px 4px 0 var(--crt-1);
+  --shadow-window: 6px 6px 0 var(--crt-1);
+
+  /* Timeline era tokens */
+  --timeline-military:      var(--crt-2);
+  --timeline-military-rgb:  var(--crt-2-rgb);
+  --timeline-tech:          var(--crt-3);
+  --timeline-tech-rgb:      var(--crt-3-rgb);
+  --timeline-education:     var(--crt-4);
+  --timeline-education-rgb: var(--crt-4-rgb);
+}
+
+/* Section headings — border-bottom cycles through the 4 accents */
+[data-theme="crt"] section:nth-child(4n+1) h3 { border-bottom-color: var(--crt-1); }
+[data-theme="crt"] section:nth-child(4n+2) h3 { border-bottom-color: var(--crt-2); }
+[data-theme="crt"] section:nth-child(4n+3) h3 { border-bottom-color: var(--crt-3); }
+[data-theme="crt"] section:nth-child(4n)   h3 { border-bottom-color: var(--crt-4); }
+
+/* Feature list markers — semantic colour coding */
+[data-theme="crt"] .feature-list--pro li::before     { content: '✓'; color: var(--crt-3); }
+[data-theme="crt"] .feature-list--con li::before     { content: '⚠'; color: var(--crt-4); }
+[data-theme="crt"] .feature-list--neutral li::before { content: '–'; color: var(--crt-2); opacity: 1; }
+
+/* Skill tags — keep bold invert; add a coloured bottom-shadow per slot */
+[data-theme="crt"] .skills-list > li:nth-child(4n+1) .skill-tag { box-shadow: 0 3px 0 var(--crt-1); }
+[data-theme="crt"] .skills-list > li:nth-child(4n+2) .skill-tag { box-shadow: 0 3px 0 var(--crt-2); }
+[data-theme="crt"] .skills-list > li:nth-child(4n+3) .skill-tag { box-shadow: 0 3px 0 var(--crt-3); }
+[data-theme="crt"] .skills-list > li:nth-child(4n)   .skill-tag { box-shadow: 0 3px 0 var(--crt-4); }
+
+/* Contact form status colours */
+[data-theme="crt"] .contact-status--loading { border-left-color: var(--crt-2); }
+[data-theme="crt"] .contact-status--success { border-left-color: var(--crt-3); }
+[data-theme="crt"] .contact-status--error   { border-left-color: var(--crt-4); }
+
+/* Close button — coral signals danger */
+[data-theme="crt"] .close-btn:hover {
+  background: var(--crt-4);
+}
+
+/* Repo meta — teal for language, amber for stars */
+[data-theme="crt"] .repo-lang  { color: var(--crt-3); }
+[data-theme="crt"] .repo-stars { color: var(--crt-2); opacity: 1; }
